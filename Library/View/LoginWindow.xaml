@@ -1,0 +1,88 @@
+﻿<Window x:Class="Library.View.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Library.View"
+        mc:Ignorable="d"
+        Title="Login Window" Height="200" Width="350" Background="#404040" ResizeMode="CanMinimize">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.75*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+
+            <Label Foreground="#cccccc" Content="Login into account" HorizontalAlignment="Center"
+                   FontFamily="Comic Sans MS" FontWeight="DemiBold" FontSize="16"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+                <Label Name="adminLabel" Content="Admin" Foreground="White" Margin="0,0,7,0" 
+                       MouseEnter="adminLabel_MouseEnter" MouseLeave="adminLabel_MouseLeave" MouseDown="adminLabel_MouseDown"/>
+                
+                <Label Name="customerLabel" Content="Customer" Foreground="White" Margin="7,0,7,0"
+                       MouseEnter="customerLabel_MouseEnter" MouseLeave="customerLabel_MouseLeave" MouseDown="customerLabel_MouseDown"/>
+
+                <Label Name="registerLabel" Content="Register" Foreground="White" Margin="7,0,0,0" FontSize="11"
+                       MouseEnter="registerLabel_MouseEnter" MouseLeave="registerLabel_MouseLeave" MouseDown="registerLabel_MouseDown"/>
+
+
+            </StackPanel>
+            
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="1">
+
+            <TextBox Name="usernameTextBox" Width="200" Height="25" Text="Username" Foreground="#a6a6a6" Background="#595959" 
+                     HorizontalAlignment="Left" Margin="15,10,0,0" VerticalContentAlignment="Center"
+                     GotFocus="usernameTextBox_GotFocus" LostFocus="usernameTextBox_LostFocus">
+
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="9"/>
+                    </Style>
+                    
+                </TextBox.Resources>
+                
+            </TextBox>
+
+            <TextBox Name="passwordTextBox" Width="200" Height="25" Text="Password" Foreground="#a6a6a6" Background="#595959" 
+                     HorizontalAlignment="Left" Margin="15,10,0,0" VerticalContentAlignment="Center"
+                     GotFocus="passwordTextBox_GotFocus" LostFocus="passwordTextBox_LostFocus">
+
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="9"/>
+                    </Style>
+
+                </TextBox.Resources>
+
+            </TextBox>
+
+        </StackPanel>
+        
+        
+        <StackPanel Orientation="Horizontal" Grid.Row="2">
+
+            <Button Name="submitButton" Content="Submit" Background="#808080" Foreground="#f2f2f2" Width="100" 
+                    Height="24" FontSize="13" Margin="15,0,0,8" VerticalAlignment="Bottom">
+                
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="8"/>
+                    </Style>
+                </Button.Resources>
+                
+            </Button>
+
+
+        </StackPanel>
+        
+
+    </Grid>
+</Window>
