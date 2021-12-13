@@ -5,26 +5,269 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Library.View"
         mc:Ignorable="d"
-        Title="AdminPageWindow" Height="650" Width="1000">
+        Title="AdminPageWindow" Height="650" Width="990" Background="#cccccc" ResizeMode="CanMinimize">
+
     <Grid>
 
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="2.5*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel>
-            <Button/>
-        </StackPanel>
+        <StackPanel Grid.Row="0">
 
-
-        <StackPanel Grid.Row="1">
-
-            <DataGrid Name="datagrid">
                 
-            </DataGrid>
+            <StackPanel>
+
+                <Label Content="Manage Library" Foreground="Red" HorizontalAlignment="Center"/>
+
+            </StackPanel>
+
             
+            
+            <StackPanel Orientation="Horizontal">
+
+                <Button Name="addNewBookButton" Content="Add new book" Width="110" Margin="10,5,0,5" Background="#666666" 
+                        Height="26" Foreground="#85f9f9"/>
+
+                <Button  Name="addNewAuthorButton" Content="Add new author" Width="110" Margin="10,5,0,5" Background="#666666" 
+                        Height="26" Foreground="#85f9f9"/>
+
+                <Button Name="addNewGenreButton"  Content="Add new genre" Width="110" Margin="10,5,0,5" Background="#666666" 
+                        Height="26" Foreground="#85f9f9"/>
+
+                <Button Name="addNewPublishinghouseButton"  Content="Add new pub.house" Width="110" Margin="10,5,0,5" Background="#666666" 
+                        Height="26" Foreground="#85f9f9"/>
+
+                <Button Name="addbookOnSaleButton"  Content="Add book on sale" Width="110" Margin="10,5,0,5" Background="#666666" 
+                        Height="26" Foreground="#85f9f9"/>
+
+                <Button Name="reserveBookButton"  Content="Reserve a book" Width="110" Margin="10,5,0,5" Background="#666666" 
+                        Height="26" Foreground="#85f9f9"/>
+
+                <Button Name="sellBookButton"  Content="Sell a book" Width="110" Margin="10,5,0,5" Background="#666666" 
+                        Height="26" Foreground="#85f9f9"/>
+
+                <Button Name="addDiscountButton"  Content="Add a discount" Width="110" Margin="10,5,0,5" Background="#666666" 
+                        Height="26" Foreground="#85f9f9"/>
+
+            </StackPanel>
+
+            
+            
+            <StackPanel Orientation="Horizontal">
+
+                <Button Name="updateBookButton" Content="Update a book" Width="110" Margin="10,5,0,5" Background="#666666" 
+                        Height="26" Foreground="#85f9f9"/>
+
+                <Button Name="updateAuthorButton" Content="Update an author" Width="110" Margin="10,5,0,5" Background="#666666" 
+                        Height="26" Foreground="#85f9f9"/>
+
+                <Button Name="updateGenreButton" Content="Update a genre" Width="110" Margin="10,5,0,5" Background="#666666" 
+                        Height="26" Foreground="#85f9f9"/>
+
+                <Button Name="updatePublishinHouseButton" Content="Update a pub.house" Width="110" Margin="10,5,0,5" Background="#666666" 
+                        Height="26" Foreground="#85f9f9"/>
+
+                <Button Name="updateBookOnSaleButton" Content="Update book sale" Width="110" Margin="10,5,0,5" Background="#666666" 
+                        Height="26" Foreground="#85f9f9"/>
+
+                <Button Name="removeDiscountButton" Content="Remove discount" Width="110" Margin="10,5,0,5" Background="#666666" 
+                        Height="26" Foreground="#85f9f9"/>
+
+                <Button Name="removeBookFromSaleButton" Content="Remove book sale" Width="110" Margin="10,5,0,5" Background="#666666" 
+                        Height="26" Foreground="#85f9f9"/>
+
+            </StackPanel>
+
+
+            <StackPanel Orientation="Horizontal">
+
+                <TextBox Name="bookIdTextBox" Text="Book Id" Height="26" Width="130" Margin="10,5,0,5" Background="Wheat"
+                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray"
+                         GotFocus="bookIdTextBox_GotFocus" LostFocus="bookIdTextBox_LostFocus">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"></Setter>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+
+
+                <TextBox Name="authorIdTextBox" Text="Author Id" Height="26" Width="130" Margin="10,5,0,5" Background="Wheat"
+                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray"
+                         GotFocus="authorIdTextBox_GotFocus" LostFocus="authorIdTextBox_LostFocus">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"></Setter>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+
+
+            </StackPanel>
+
+
+            <StackPanel Orientation="Horizontal">
+
+
+                <TextBox Name="bookNameTextBox" Text="Book name" Height="26" Width="130" Margin="10,5,0,5" Background="Wheat"
+                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray"
+                         GotFocus="bookNameTextBox_GotFocus" LostFocus="bookNameTextBox_LostFocus">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"></Setter>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+
+                
+                <TextBox Name="authorFirstNameTextBox" Text="Author first name" Height="26" Width="130" Margin="10,5,0,5" Background="Wheat"
+                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray"
+                         GotFocus="authorFirstNameTextBox_GotFocus" LostFocus="authorFirstNameTextBox_LostFocus">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"></Setter>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+
+
+            </StackPanel>
+
+
+            <StackPanel Orientation="Horizontal">
+
+
+                <TextBox Name="numberOfPagesTextBox" Text="# of pages" Height="26" Width="130" Margin="10,5,0,5" Background="Wheat"
+                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray"
+                         GotFocus="numberOfPagesTextBox_GotFocus" LostFocus="numberOfPagesTextBox_LostFocus">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"></Setter>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+
+
+                <TextBox Name="authorlastNameTextBox" Text="Author last name" Height="26" Width="130" Margin="10,5,0,5" Background="Wheat"
+                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray"
+                         GotFocus="authotlastNameTextBox_GotFocus" LostFocus="authotlastNameTextBox_LostFocus">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"></Setter>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+
+
+            </StackPanel>
+
+
+            <StackPanel Orientation="Horizontal">
+
+
+                <TextBox Name="costPriceTextBox" Text="Cost Price" Height="26" Width="130" Margin="10,5,0,5" Background="Wheat"
+                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray"
+                         GotFocus="costPriceTextBox_GotFocus" LostFocus="costPriceTextBox_LostFocus">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"></Setter>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+
+
+            </StackPanel>
+
+
+
+            <StackPanel Orientation="Horizontal">
+
+
+                <TextBox Name="isSequelTextBox" Text="Is sequel(0/1)" Height="26" Width="130" Margin="10,5,0,5" Background="Wheat"
+                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray"
+                         GotFocus="isSequelTextBox_GotFocus" LostFocus="isSequelTextBox_LostFocus">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"></Setter>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+
+
+            </StackPanel>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         </StackPanel>
+
+
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" >
+
+            <Button Name="showBooksButton" Content="Show all books" Width="110" 
+                    Height="26" HorizontalAlignment="Left" Margin="15,10,0,10"
+                    Background="#666666" Foreground="White" Click="showBooksButton_Click"/>
+
+
+        </StackPanel>
+
+        
+        
+        <!--================================================-->
+        
+
+            <DataGrid Grid.Row="2" Name="tableDataGrid" Grid.Column="1" Background="#686868" AutoGenerateColumns="True" 
+                  HeadersVisibility="All" Foreground="White" RowBackground="#686868" AlternatingRowBackground="#686868"
+                      VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True">
+
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#686868"/>
+                        <Setter Property="Foreground" Value="#B0B0B0"/>
+                    </Style>
+                </DataGrid.Resources>
+
+            </DataGrid>
+
         
     </Grid>
 </Window>

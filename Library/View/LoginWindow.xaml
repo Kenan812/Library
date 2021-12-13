@@ -70,7 +70,7 @@
         <StackPanel Orientation="Horizontal" Grid.Row="2">
 
             <Button Name="submitButton" Content="Submit" Background="#808080" Foreground="#f2f2f2" Width="100" 
-                    Height="24" FontSize="13" Margin="15,0,0,8" VerticalAlignment="Bottom">
+                    Height="24" FontSize="13" Margin="15,0,0,8" VerticalAlignment="Bottom" Click="submitButton_Click">
                 
                 <Button.Resources>
                     <Style TargetType="Border">

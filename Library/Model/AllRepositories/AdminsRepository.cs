@@ -54,5 +54,10 @@ namespace Library.Model.AllRepositories
         {
             return _adminsTable.GetAdminCount();
         }
+
+        public bool CheckUserPassword(string username, string password)
+        {
+            return _adminsTable.CheckAdminLoginAndPassword(username, password);
+        }
     }
 }

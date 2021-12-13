@@ -126,5 +126,35 @@ namespace Library.Model.Tables
                 _connection.Close();
             }
         }
+
+
+        public bool CheckAdminLoginAndPassword(string username, string password)
+        {
+            bool check = false;
+
+            try
+            {
+                _connection.Open();
+
+                string query = $"SELECT Password FROM Admins WHERE UserName = '{username}'";
+
+                SqlCommand command = new SqlCommand(query, _connection);
+                string pswrd_check = command.ExecuteScalar().ToString();
+
+                if (pswrd_check == password) check = true;
+
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                _connection.Close();
+            }
+
+            return check;
+        }
+
     }
 }

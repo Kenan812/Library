@@ -98,8 +98,6 @@ namespace Library.View
             {
                 MessageBox.Show("User not chosen", "Unable to open registration window", MessageBoxButton.OK);
             }
-
-
         }
 
         #endregion
@@ -154,5 +152,12 @@ namespace Library.View
         #endregion
 
 
+        private void submitButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (customerLabel.Foreground == Brushes.Red)
+                loginWindowViewModel.LoginCustomer(usernameTextBox.Text, passwordTextBox.Text);
+            else if (adminLabel.Foreground == Brushes.Red)
+                loginWindowViewModel.LoginAdmin(usernameTextBox.Text, passwordTextBox.Text);
+        }
     }
 }

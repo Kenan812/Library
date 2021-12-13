@@ -49,5 +49,11 @@ namespace Library.Model.AllRepositories
                 MessageBox.Show($"Error Message: {ex.Message}\n\n\nError Stack Trace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        public bool CheckUserPassword(string username, string password)
+        {
+            return _customersTable.CheckCustomerLoginAndPassword(username, password);
+        }
+
     }
 }

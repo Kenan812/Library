@@ -6,6 +6,7 @@ using System.Windows;
 using Library.Model;
 using Library.Model.Tables;
 using Library.Properties;
+using Library.View;
 
 namespace Library.ViewModel
 {
@@ -47,6 +48,32 @@ namespace Library.ViewModel
 
         public bool IsUserCustomer() { return _isCustomer; }
 
+
+        public void LoginCustomer(string username, string password)
+        {
+            if (_libraryDbTool.UserRepository.CustomersRepo.CheckUserPassword(username, password))
+            {
+                CustomerPageWindow customerPageWindow = new CustomerPageWindow();
+                customerPageWindow.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Wrong username or password", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        public void LoginAdmin(string username, string password)
+        {
+            if (_libraryDbTool.UserRepository.AdminsRepo.CheckUserPassword(username, password))
+            {
+                AdminPageWindow adminPageWindow = new AdminPageWindow();
+                adminPageWindow.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Wrong username or password", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
 
 
         protected virtual void OnPropertyChanged(string propertyName = null)

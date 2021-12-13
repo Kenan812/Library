@@ -1,7 +1,10 @@
-﻿using Library.Model.Interfaces;
+﻿using Dapper;
+using Library.Model.Interfaces;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using System.Text;
 using System.Windows;
 
@@ -206,6 +209,48 @@ namespace Library.Model.Tables
             Insert(new List<string> { "23", "95", "7/17/2020", "15", "2/16/2017" });
             Insert(new List<string> { "24", "35", "7/17/2020", "16", "12/4/1899" });
             Insert(new List<string> { "25", "80", "7/17/2020", "17", "9/9/1840" });
+        }
+
+        public DataTable GetBooksInfo()
+        {
+            try
+            {
+                string query = @"SELECT Books.BookName, Authors.FirstName + Authors.LastName AS 'Author', Books.NumberOfPages, BooksOnSale.Price, PublishingHouses.PhouseName, Books.IsSequel
+                                    FROM BooksOnSale
+                                    LEFT JOIN Books ON BooksOnSale.BookId = Books.Id
+                                    LEFT JOIN Authors ON Books.AuthorId = Authors.Id
+                                    LEFT JOIN PublishingHouses ON PublishingHouses.Id = BooksOnSale.PublishingHouseId";
+
+
+                IEnumerable<dynamic> r = _connection.Query(query);
+
+                return ToDataTable(_connection.Query(query));
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Message: {ex.Message}\n\n\nError Stack Trace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return null;
+        }
+
+
+        public DataTable ToDataTable(IEnumerable<dynamic> items)
+        {
+            var data = items.ToArray();
+            if (data.Count() == 0) return null;
+
+            var dt = new DataTable();
+            foreach (var key in ((IDictionary<string, object>)data[0]).Keys)
+            {
+                dt.Columns.Add(key);
+            }
+            foreach (var d in data)
+            {
+                dt.Rows.Add(((IDictionary<string, object>)d).Values.ToArray());
+            }
+            return dt;
         }
 
     }
