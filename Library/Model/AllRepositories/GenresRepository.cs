@@ -2,6 +2,7 @@
 using Library.Properties;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 using System.Windows;
 
@@ -53,6 +54,11 @@ namespace Library.Model.AllRepositories
         public void InsertInitialValues()
         {
             _genresTable.InsertAllInitialValues();
+        }
+
+        public DataTable GetGenresInfo()
+        {
+            return _genresTable.GetGenresInfo();
         }
 
     }

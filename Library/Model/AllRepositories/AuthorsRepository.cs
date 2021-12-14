@@ -2,6 +2,7 @@
 using Library.Properties;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 using System.Windows;
 
@@ -54,5 +55,11 @@ namespace Library.Model.AllRepositories
         {
             _authorsTable.InsertAllInitialValues();
         }
+
+        public DataTable GetAuthorsInfo()
+        {
+            return _authorsTable.GetAuthorsInfo();
+        }
+
     }
 }

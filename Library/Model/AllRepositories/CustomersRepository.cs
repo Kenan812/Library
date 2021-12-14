@@ -2,6 +2,7 @@
 using Library.Properties;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 using System.Windows;
 
@@ -54,6 +55,13 @@ namespace Library.Model.AllRepositories
         {
             return _customersTable.CheckCustomerLoginAndPassword(username, password);
         }
+
+        public DataTable GetCustomersInfo()
+        {
+            return _customersTable.GetCustomersInfo();
+        }
+
+
 
     }
 }

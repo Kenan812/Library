@@ -1,7 +1,9 @@
-﻿using Library.Model.Interfaces;
+﻿using Dapper;
+using Library.Model.Interfaces;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 using System.Windows;
 
@@ -117,5 +119,26 @@ namespace Library.Model.Tables
 
             return check;
         }
+
+        public DataTable GetCustomersInfo()
+        {
+            try
+            {
+                string query = @"SELECT * FROM Customers";
+
+                IEnumerable<dynamic> r = _connection.Query(query);
+
+                return IEnumerableToDataTable.ToDataTable(_connection.Query(query));
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Message: {ex.Message}\n\n\nError Stack Trace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return null;
+        }
+
+
     }
 }

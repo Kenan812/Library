@@ -2,7 +2,7 @@
 using Library.Properties;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Data;
 using System.Windows;
 
 namespace Library.Model.AllRepositories
@@ -23,7 +23,7 @@ namespace Library.Model.AllRepositories
 
         public void Insert(string publishinghouseName)
         {
-            _publishingHousesTable.Insert(new List<string>() { publishinghouseName} );
+            _publishingHousesTable.Insert(new List<string>() { publishinghouseName });
         }
 
         public void Update(string id, string publishinghouseName)
@@ -50,10 +50,15 @@ namespace Library.Model.AllRepositories
             }
         }
 
-
         public void InsertInitialValues()
         {
             _publishingHousesTable.InsertAllInitialValues();
+        }
+
+
+        public DataTable GetPublishingHousesInfo()
+        {
+            return _publishingHousesTable.GetPublishingHousesInfo();
         }
     }
 }

@@ -2,6 +2,7 @@
 using Library.Properties;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Windows;
 
 namespace Library.Model.AllRepositories
@@ -48,11 +49,15 @@ namespace Library.Model.AllRepositories
                 MessageBox.Show($"Error Message: {ex.Message}\n\n\nError Stack Trace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        
-
+    
         public void InsertInitialValues()
         {
             _booksTable.InsertAllInitialValues();
+        }
+
+        public DataTable GetBooksInfo()
+        {
+            return _booksTable.GetBooksInfo();
         }
 
     }

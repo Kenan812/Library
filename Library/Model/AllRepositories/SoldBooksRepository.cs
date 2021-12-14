@@ -4,6 +4,7 @@ using System.Text;
 using Library.Model.Tables;
 using System.Windows;
 using Library.Properties;
+using System.Data;
 
 namespace Library.Model.AllRepositories
 {
@@ -50,5 +51,9 @@ namespace Library.Model.AllRepositories
             }
         }
 
+        public DataTable GetSoldBooksInfo()
+        {
+            return _soldBooksTable.GetSoldBooksInfo();
+        }
     }
 }

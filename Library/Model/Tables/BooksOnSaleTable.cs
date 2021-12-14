@@ -215,16 +215,14 @@ namespace Library.Model.Tables
         {
             try
             {
-                string query = @"SELECT Books.BookName, Authors.FirstName + Authors.LastName AS 'Author', Books.NumberOfPages, BooksOnSale.Price, PublishingHouses.PhouseName, Books.IsSequel
+                string query = @"SELECT BooksOnSale.Id, Books.BookName, Authors.FirstName + Authors.LastName AS 'Author', Books.NumberOfPages, BooksOnSale.Price, PublishingHouses.PhouseName, Books.IsSequel, BooksOnSale.Discount
                                     FROM BooksOnSale
                                     LEFT JOIN Books ON BooksOnSale.BookId = Books.Id
                                     LEFT JOIN Authors ON Books.AuthorId = Authors.Id
                                     LEFT JOIN PublishingHouses ON PublishingHouses.Id = BooksOnSale.PublishingHouseId";
 
 
-                IEnumerable<dynamic> r = _connection.Query(query);
-
-                return ToDataTable(_connection.Query(query));
+                return IEnumerableToDataTable.ToDataTable(_connection.Query(query));
 
             }
             catch (Exception ex)
@@ -236,22 +234,7 @@ namespace Library.Model.Tables
         }
 
 
-        public DataTable ToDataTable(IEnumerable<dynamic> items)
-        {
-            var data = items.ToArray();
-            if (data.Count() == 0) return null;
-
-            var dt = new DataTable();
-            foreach (var key in ((IDictionary<string, object>)data[0]).Keys)
-            {
-                dt.Columns.Add(key);
-            }
-            foreach (var d in data)
-            {
-                dt.Rows.Add(((IDictionary<string, object>)d).Values.ToArray());
-            }
-            return dt;
-        }
+    
 
     }
 }

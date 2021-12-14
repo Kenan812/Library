@@ -1,8 +1,10 @@
-﻿using Library.Model.Interfaces;
+﻿using Dapper;
+using Library.Model.Interfaces;
 using Library.Properties;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 using System.Windows;
 
@@ -97,5 +99,26 @@ namespace Library.Model.Tables
             MessageBox.Show($"Unable to delete sold book", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
+        public DataTable GetSoldBooksInfo()
+        {
+            try
+            {
+                string query = @"SELECT Books.Id, Books.BookName, Authors.FirstName + ' ' +Authors.LastName AS 'Author', Books.NumberOfPages, Customers.Id, Customers.FirstName + ' ' +Customers.LastName AS 'Customer'
+                                    FROM SoldBooks
+                                    LEFT JOIN Books ON SoldBooks.BookId = Books.Id
+                                    LEFT JOIN Authors ON Authors.Id = Books.AuthorId
+                                    LEFT JOIN Customers ON Customers.Id = SoldBooks.CustomerId";
+
+
+                return IEnumerableToDataTable.ToDataTable(_connection.Query(query));
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Message: {ex.Message}\n\n\nError Stack Trace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return null;
+        }
     }
 }

@@ -1,7 +1,9 @@
-﻿using Library.Model.Interfaces;
+﻿using Dapper;
+using Library.Model.Interfaces;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 using System.Windows;
 
@@ -43,7 +45,6 @@ namespace Library.Model.Tables
             {
                 _connection.Close();
             }
-
         }
 
 
@@ -193,6 +194,25 @@ namespace Library.Model.Tables
             Insert(new List<string> { "The Lady with the Dog", "15", "9", "15", "0" }); // 24
 
             Insert(new List<string> { "A Hero of Our Time", "124", "10", "60", "0" }); // 25
+        }
+
+        public DataTable GetBooksInfo()
+        {
+            try
+            {
+                string query = @"SELECT Books.Id, Books.BookName, Authors.FirstName + ' ' +Authors.LastName AS 'Author', Books.NumberOfPages, Books.IsSequel FROM Books
+                                    LEFT JOIN Authors ON Authors.Id = Books.AuthorId";
+
+
+                return IEnumerableToDataTable.ToDataTable(_connection.Query(query));
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Message: {ex.Message}\n\n\nError Stack Trace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return null;
         }
     }
 }

@@ -117,7 +117,7 @@ namespace Library.Model.Tables
 
                 return count;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return 0;
             }

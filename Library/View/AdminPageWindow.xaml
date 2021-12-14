@@ -12,8 +12,8 @@
         
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
-            <RowDefinition Height="0.5*"/>
-            <RowDefinition Height="2.5*"/>
+            <RowDefinition Height="0.42*"/>
+            <RowDefinition Height="2.4*"/>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0">
@@ -27,31 +27,33 @@
 
             
             
+            <!--Buttons-->
+            
             <StackPanel Orientation="Horizontal">
 
                 <Button Name="addNewBookButton" Content="Add new book" Width="110" Margin="10,5,0,5" Background="#666666" 
-                        Height="26" Foreground="#85f9f9"/>
+                        Height="26" Foreground="#85f9f9" Click="addNewBookButton_Click"/>
 
                 <Button  Name="addNewAuthorButton" Content="Add new author" Width="110" Margin="10,5,0,5" Background="#666666" 
-                        Height="26" Foreground="#85f9f9"/>
+                        Height="26" Foreground="#85f9f9" Click="addNewAuthorButton_Click"/>
 
                 <Button Name="addNewGenreButton"  Content="Add new genre" Width="110" Margin="10,5,0,5" Background="#666666" 
-                        Height="26" Foreground="#85f9f9"/>
+                        Height="26" Foreground="#85f9f9" Click="addNewGenreButton_Click"/>
 
                 <Button Name="addNewPublishinghouseButton"  Content="Add new pub.house" Width="110" Margin="10,5,0,5" Background="#666666" 
-                        Height="26" Foreground="#85f9f9"/>
+                        Height="26" Foreground="#85f9f9" Click="addNewPublishinghouseButton_Click"/>
 
                 <Button Name="addbookOnSaleButton"  Content="Add book on sale" Width="110" Margin="10,5,0,5" Background="#666666" 
-                        Height="26" Foreground="#85f9f9"/>
+                        Height="26" Foreground="#85f9f9" Click="addbookOnSaleButton_Click"/>
 
-                <Button Name="reserveBookButton"  Content="Reserve a book" Width="110" Margin="10,5,0,5" Background="#666666" 
-                        Height="26" Foreground="#85f9f9"/>
+                <Button Name="addGenreToBookButton"  Content="Add genre to book" Width="110" Margin="10,5,0,5" Background="#666666" 
+                        Height="26" Foreground="#85f9f9" Click="addGenreToBookButton_Click"/>
 
                 <Button Name="sellBookButton"  Content="Sell a book" Width="110" Margin="10,5,0,5" Background="#666666" 
-                        Height="26" Foreground="#85f9f9"/>
+                        Height="26" Foreground="#85f9f9" Click="sellBookButton_Click"/>
 
                 <Button Name="addDiscountButton"  Content="Add a discount" Width="110" Margin="10,5,0,5" Background="#666666" 
-                        Height="26" Foreground="#85f9f9"/>
+                        Height="26" Foreground="#85f9f9" Click="addDiscountButton_Click"/>
 
             </StackPanel>
 
@@ -60,34 +62,41 @@
             <StackPanel Orientation="Horizontal">
 
                 <Button Name="updateBookButton" Content="Update a book" Width="110" Margin="10,5,0,5" Background="#666666" 
-                        Height="26" Foreground="#85f9f9"/>
+                        Height="26" Foreground="#85f9f9" Click="updateBookButton_Click"/>
 
                 <Button Name="updateAuthorButton" Content="Update an author" Width="110" Margin="10,5,0,5" Background="#666666" 
-                        Height="26" Foreground="#85f9f9"/>
+                        Height="26" Foreground="#85f9f9" Click="updateAuthorButton_Click"/>
 
                 <Button Name="updateGenreButton" Content="Update a genre" Width="110" Margin="10,5,0,5" Background="#666666" 
-                        Height="26" Foreground="#85f9f9"/>
+                        Height="26" Foreground="#85f9f9" Click="updateGenreButton_Click"/>
 
                 <Button Name="updatePublishinHouseButton" Content="Update a pub.house" Width="110" Margin="10,5,0,5" Background="#666666" 
-                        Height="26" Foreground="#85f9f9"/>
+                        Height="26" Foreground="#85f9f9" Click="updatePublishinHouseButton_Click"/>
 
                 <Button Name="updateBookOnSaleButton" Content="Update book sale" Width="110" Margin="10,5,0,5" Background="#666666" 
-                        Height="26" Foreground="#85f9f9"/>
+                        Height="26" Foreground="#85f9f9" Click="updateBookOnSaleButton_Click"/>
 
                 <Button Name="removeDiscountButton" Content="Remove discount" Width="110" Margin="10,5,0,5" Background="#666666" 
-                        Height="26" Foreground="#85f9f9"/>
+                        Height="26" Foreground="#85f9f9" Click="removeDiscountButton_Click"/>
 
                 <Button Name="removeBookFromSaleButton" Content="Remove book sale" Width="110" Margin="10,5,0,5" Background="#666666" 
-                        Height="26" Foreground="#85f9f9"/>
+                        Height="26" Foreground="#85f9f9" Click="removeBookFromSaleButton_Click"/>
+
+                <Button Name="reserveBookButton"  Content="Reserve a book" Width="110" Margin="10,5,0,5" Background="#666666" 
+                        Height="26" Foreground="#85f9f9" Click="reserveBookButton_Click"/>
 
             </StackPanel>
 
+
+
+            
+            <!--Text Boxes-->
 
             <StackPanel Orientation="Horizontal">
 
                 <TextBox Name="bookIdTextBox" Text="Book Id" Height="26" Width="130" Margin="10,5,0,5" Background="Wheat"
                          VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray"
-                         GotFocus="bookIdTextBox_GotFocus" LostFocus="bookIdTextBox_LostFocus">
+                         GotFocus="bookIdTextBox_GotFocus" LostFocus="bookIdTextBox_LostFocus" FontFamily="Times, Times New Roman, serif">
                     <TextBox.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"></Setter>
@@ -97,8 +106,52 @@
 
 
                 <TextBox Name="authorIdTextBox" Text="Author Id" Height="26" Width="130" Margin="10,5,0,5" Background="Wheat"
-                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray"
+                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray"  FontFamily="Times, Times New Roman, serif"
                          GotFocus="authorIdTextBox_GotFocus" LostFocus="authorIdTextBox_LostFocus">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"></Setter>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+
+
+                <TextBox Name="genreIdTextBox" Text="Genre Id" Height="26" Width="130" Margin="10,5,0,5" Background="Wheat"
+                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray" FontFamily="Times, Times New Roman, serif"
+                         GotFocus="genreIdTextBox_GotFocus" LostFocus="genreIdTextBox_LostFocus">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"></Setter>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+
+
+                <TextBox Name="publishingHouseIdTextBox" Text="Publishing house Id" Height="26" Width="130" Margin="10,5,0,5" Background="Wheat"
+                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray" FontFamily="Times, Times New Roman, serif"
+                         GotFocus="publishingHouseIdTextBox_GotFocus" LostFocus="publishingHouseIdTextBox_LostFocus">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"></Setter>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+
+
+                <TextBox Name="bookonSaleIdTextBox" Text="Book in sale Id" Height="26" Width="130" Margin="10,5,0,5" Background="Wheat"
+                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray" FontFamily="Times, Times New Roman, serif"
+                         GotFocus="bookonSaleIdTextBox_GotFocus" LostFocus="bookonSaleIdTextBox_LostFocus">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"></Setter>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+
+
+                <TextBox Name="customerIdTextBox" Text="Customer Id" Height="26" Width="130" Margin="10,5,0,5" Background="Wheat"
+                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray" FontFamily="Times, Times New Roman, serif"
+                         GotFocus="customerIdTextBox_GotFocus" LostFocus="customerIdTextBox_LostFocus">
                     <TextBox.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"></Setter>
@@ -114,7 +167,7 @@
 
 
                 <TextBox Name="bookNameTextBox" Text="Book name" Height="26" Width="130" Margin="10,5,0,5" Background="Wheat"
-                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray"
+                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray" FontFamily="Times, Times New Roman, serif"
                          GotFocus="bookNameTextBox_GotFocus" LostFocus="bookNameTextBox_LostFocus">
                     <TextBox.Resources>
                         <Style TargetType="Border">
@@ -125,7 +178,7 @@
 
                 
                 <TextBox Name="authorFirstNameTextBox" Text="Author first name" Height="26" Width="130" Margin="10,5,0,5" Background="Wheat"
-                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray"
+                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray" FontFamily="Times, Times New Roman, serif"
                          GotFocus="authorFirstNameTextBox_GotFocus" LostFocus="authorFirstNameTextBox_LostFocus">
                     <TextBox.Resources>
                         <Style TargetType="Border">
@@ -135,6 +188,51 @@
                 </TextBox>
 
 
+                <TextBox Name="genreNameTextBox" Text="Genre name" Height="26" Width="130" Margin="10,5,0,5" Background="Wheat"
+                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray" FontFamily="Times, Times New Roman, serif"
+                         GotFocus="genreNameTextBox_GotFocus" LostFocus="genreNameTextBox_LostFocus">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"></Setter>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+
+
+                <TextBox Name="publishingHouseNameTextBox" Text="Publishing house name" Height="26" Width="130" Margin="10,5,0,5" Background="Wheat"
+                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray" FontFamily="Times, Times New Roman, serif"
+                         GotFocus="publishingHouseNameTextBox_GotFocus" LostFocus="publishingHouseNameTextBox_LostFocus">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"></Setter>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+
+
+                <TextBox Name="sellPriceTextBox" Text="Sell price" Height="26" Width="130" Margin="10,5,0,5" Background="Wheat"
+                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray" FontFamily="Times, Times New Roman, serif"
+                         GotFocus="sellPriceTextBox_GotFocus" LostFocus="sellPriceTextBox_LostFocus">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"></Setter>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+
+
+                <TextBox Name="dicountTextBox" Text="Discount(in %)" Height="26" Width="130" Margin="10,5,0,5" Background="Wheat"
+                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray" FontFamily="Times, Times New Roman, serif"
+                         GotFocus="dicountTextBox_GotFocus" LostFocus="dicountTextBox_LostFocus">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"></Setter>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+
+
+
             </StackPanel>
 
 
@@ -142,7 +240,7 @@
 
 
                 <TextBox Name="numberOfPagesTextBox" Text="# of pages" Height="26" Width="130" Margin="10,5,0,5" Background="Wheat"
-                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray"
+                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray" FontFamily="Times, Times New Roman, serif"
                          GotFocus="numberOfPagesTextBox_GotFocus" LostFocus="numberOfPagesTextBox_LostFocus">
                     <TextBox.Resources>
                         <Style TargetType="Border">
@@ -153,8 +251,19 @@
 
 
                 <TextBox Name="authorlastNameTextBox" Text="Author last name" Height="26" Width="130" Margin="10,5,0,5" Background="Wheat"
-                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray"
+                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray" FontFamily="Times, Times New Roman, serif"
                          GotFocus="authotlastNameTextBox_GotFocus" LostFocus="authotlastNameTextBox_LostFocus">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"></Setter>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+
+
+                <TextBox Name="datePutUpForSaleTextBox" Text="Date put up for sale(yyyy/mm/dd)" Height="26" Width="190" Margin="230,5,0,5" Background="Wheat"
+                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray" FontFamily="Times, Times New Roman, serif"
+                         GotFocus="datePutUpForSaleTextBox_GotFocus" LostFocus="datePutUpForSaleTextBox_LostFocus">
                     <TextBox.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"></Setter>
@@ -170,7 +279,7 @@
 
 
                 <TextBox Name="costPriceTextBox" Text="Cost Price" Height="26" Width="130" Margin="10,5,0,5" Background="Wheat"
-                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray"
+                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray" FontFamily="Times, Times New Roman, serif"
                          GotFocus="costPriceTextBox_GotFocus" LostFocus="costPriceTextBox_LostFocus">
                     <TextBox.Resources>
                         <Style TargetType="Border">
@@ -180,6 +289,16 @@
                 </TextBox>
 
 
+                <TextBox Name="publishingDateTextBox" Text="Publishing date(yyyy/mm/dd)" Height="26" Width="190" Margin="370,5,0,5" Background="Wheat"
+                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray" FontFamily="Times, Times New Roman, serif"
+                         GotFocus="publishingDateTextBox_GotFocus" LostFocus="publishingDateTextBox_LostFocus">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"></Setter>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+
             </StackPanel>
 
 
@@ -188,7 +307,7 @@
 
 
                 <TextBox Name="isSequelTextBox" Text="Is sequel(0/1)" Height="26" Width="130" Margin="10,5,0,5" Background="Wheat"
-                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray"
+                         VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray" FontFamily="Times, Times New Roman, serif"
                          GotFocus="isSequelTextBox_GotFocus" LostFocus="isSequelTextBox_LostFocus">
                     <TextBox.Resources>
                         <Style TargetType="Border">
@@ -201,7 +320,20 @@
             </StackPanel>
 
 
+            <StackPanel>
 
+                <Button Name="submitButton"  Content="Submit" Width="140" Margin="10,5,0,5" Background="#666666" 
+                        Height="30" Foreground="LightGreen" FontSize="20" FontWeight="Bold" FontFamily="Comic Sans MS"
+                        BorderThickness="2" VerticalContentAlignment="Top" Click="submitButton_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"></Setter>
+                        </Style>
+                    </Button.Resources>
+                    
+                </Button>
+
+            </StackPanel>
 
 
 
@@ -243,9 +375,34 @@
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" >
 
-            <Button Name="showBooksButton" Content="Show all books" Width="110" 
+            <Button Name="showBooksButton" Content="Show books on sale" Width="110" 
                     Height="26" HorizontalAlignment="Left" Margin="15,10,0,10"
                     Background="#666666" Foreground="White" Click="showBooksButton_Click"/>
+
+            <Button Name="showAuthorsButton" Content="Show all authors" Width="110" 
+                    Height="26" HorizontalAlignment="Left" Margin="15,10,0,10"
+                    Background="#666666" Foreground="White" Click="showAuthorsButton_Click"/>
+
+            <Button Name="showbooksButton" Content="Show all books" Width="110" 
+                    Height="26" HorizontalAlignment="Left" Margin="15,10,0,10"
+                    Background="#666666" Foreground="White" Click="showbooksButton_Click_1"/>
+
+            <Button Name="showGenresButton" Content="Show all genres" Width="110" 
+                    Height="26" HorizontalAlignment="Left" Margin="15,10,0,10"
+                    Background="#666666" Foreground="White" Click="showGenresButton_Click"/>
+
+            <Button Name="showPublishingHousesButton" Content="Show all p.houses" Width="110" 
+                    Height="26" HorizontalAlignment="Left" Margin="15,10,0,10"
+                    Background="#666666" Foreground="White" Click="showPublishingHousesButton_Click"/>
+
+            <Button Name="showCustomersButton" Content="Show all customers" Width="110" 
+                    Height="26" HorizontalAlignment="Left" Margin="15,10,0,10"
+                    Background="#666666" Foreground="White" Click="showCustomersButton_Click"/>
+
+
+            <Button Name="showSoldBooksButton" Content="Show sold books" Width="110" 
+                    Height="26" HorizontalAlignment="Left" Margin="15,10,0,10"
+                    Background="#666666" Foreground="White" Click="showSoldBooksButton_Click"/>
 
 
         </StackPanel>
@@ -255,18 +412,18 @@
         <!--================================================-->
         
 
-            <DataGrid Grid.Row="2" Name="tableDataGrid" Grid.Column="1" Background="#686868" AutoGenerateColumns="True" 
-                  HeadersVisibility="All" Foreground="White" RowBackground="#686868" AlternatingRowBackground="#686868"
-                      VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True">
+        <DataGrid Grid.Row="2" Name="tableDataGrid" Grid.Column="1" Background="#686868" AutoGenerateColumns="True" 
+              HeadersVisibility="All" Foreground="White" RowBackground="#686868" AlternatingRowBackground="#686868"
+                  VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True">
 
-                <DataGrid.Resources>
-                    <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="Background" Value="#686868"/>
-                        <Setter Property="Foreground" Value="#B0B0B0"/>
-                    </Style>
-                </DataGrid.Resources>
+            <DataGrid.Resources>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#686868"/>
+                    <Setter Property="Foreground" Value="#B0B0B0"/>
+                </Style>
+            </DataGrid.Resources>
 
-            </DataGrid>
+        </DataGrid>
 
         
     </Grid>

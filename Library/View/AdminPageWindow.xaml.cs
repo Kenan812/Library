@@ -1,15 +1,9 @@
 ﻿using Library.ViewModel;
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Library.View
 {
@@ -34,34 +28,148 @@ namespace Library.View
             tableDataGrid.ItemsSource = _adminPageViewModel.GetBooksOnSale().DefaultView;
         }
 
+        private void showAuthorsButton_Click(object sender, RoutedEventArgs e)
+        {
+            tableDataGrid.ItemsSource = _adminPageViewModel.GetAuthors().DefaultView;
+        }
+
+        private void showbooksButton_Click_1(object sender, RoutedEventArgs e)
+        {
+            tableDataGrid.ItemsSource = _adminPageViewModel.GetBooks().DefaultView;
+        }
+
+        private void showGenresButton_Click(object sender, RoutedEventArgs e)
+        {
+            tableDataGrid.ItemsSource = _adminPageViewModel.GetGenres().DefaultView;
+        }
+
+        private void showPublishingHousesButton_Click(object sender, RoutedEventArgs e)
+        {
+            tableDataGrid.ItemsSource = _adminPageViewModel.GetPublishingHouses().DefaultView;
+        }
+
+        private void showCustomersButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                tableDataGrid.ItemsSource = _adminPageViewModel.GetCustomers().DefaultView;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Table is empty");
+            }
+        }
+
+        private void showSoldBooksButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                tableDataGrid.ItemsSource = _adminPageViewModel.GetSoldBooks().DefaultView;
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Table is empty");
+            }
+        }
+
+
+
 
         private void SetDefaultPageSettings()
         {
             bookIdTextBox.Text = "Book Id";
-            //bookIdTextBox.IsEnabled = false;
+            bookIdTextBox.IsEnabled = false;
+            bookIdTextBox.Foreground = Brushes.DarkMagenta;
 
             bookNameTextBox.Text = "Book name";
-            //bookNameTextBox.IsEnabled = false;
+            bookNameTextBox.IsEnabled = false;
+            bookNameTextBox.Foreground = Brushes.DarkMagenta;
+
 
             numberOfPagesTextBox.Text = "# of pages";
-            //numberOfPagesTextBox.IsEnabled = false;
+            numberOfPagesTextBox.IsEnabled = false;
+            numberOfPagesTextBox.Foreground = Brushes.DarkMagenta;
+
 
             authorIdTextBox.Text = "Author Id";
-            //authorIdTextBox.IsEnabled = false;
+            authorIdTextBox.IsEnabled = false;
+            authorIdTextBox.Foreground = Brushes.DarkMagenta;
+
 
             costPriceTextBox.Text = "Cost Price";
-            //costPriceTextBox.IsEnabled = false;
+            costPriceTextBox.IsEnabled = false;
+            costPriceTextBox.Foreground = Brushes.DarkMagenta;
+
 
             isSequelTextBox.Text = "Is sequel(0/1)";
-            //isSequelTextBox.IsEnabled = false;
+            isSequelTextBox.IsEnabled = false;
+            isSequelTextBox.Foreground = Brushes.DarkMagenta;
+
 
             authorFirstNameTextBox.Text = "Author first name";
-            //authorFirstNameTextBox.IsEnabled = false;
+            authorFirstNameTextBox.IsEnabled = false;
+            authorFirstNameTextBox.Foreground = Brushes.DarkMagenta;
+
 
             authorlastNameTextBox.Text = "Author last name";
-            //authorlastNameTextBox.IsEnabled = false;
+            authorlastNameTextBox.IsEnabled = false;
+            authorlastNameTextBox.Foreground = Brushes.DarkMagenta;
+
+
+            genreIdTextBox.Text = "Genre Id";
+            genreIdTextBox.IsEnabled = false;
+            genreIdTextBox.Foreground = Brushes.DarkMagenta;
+
+
+            genreNameTextBox.Text = "Genre name";
+            genreNameTextBox.IsEnabled = false;
+            genreNameTextBox.Foreground = Brushes.DarkMagenta;
+
+
+            publishingHouseIdTextBox.Text = "Publishing house Id";
+            publishingHouseIdTextBox.IsEnabled = false;
+            publishingHouseIdTextBox.Foreground = Brushes.DarkMagenta;
+
+
+            publishingHouseNameTextBox.Text = "Publishing house name";
+            publishingHouseNameTextBox.IsEnabled = false;
+            publishingHouseNameTextBox.Foreground = Brushes.DarkMagenta;
+
+
+            bookonSaleIdTextBox.Text = "Book in sale Id";
+            bookonSaleIdTextBox.IsEnabled = false;
+            bookonSaleIdTextBox.Foreground = Brushes.DarkMagenta;
+
+
+            sellPriceTextBox.Text = "Sell price";
+            sellPriceTextBox.IsEnabled = false;
+            sellPriceTextBox.Foreground = Brushes.DarkMagenta;
+
+
+            dicountTextBox.Text = "Discount(in %)";
+            dicountTextBox.IsEnabled = false;
+            dicountTextBox.Foreground = Brushes.DarkMagenta;
+
+
+            customerIdTextBox.Text = "Customer Id";
+            customerIdTextBox.IsEnabled = false;
+            customerIdTextBox.Foreground = Brushes.DarkMagenta;
+
+
+            datePutUpForSaleTextBox.Text = "Date put up for sale(yyyy/mm/dd)";
+            datePutUpForSaleTextBox.IsEnabled = false;
+            datePutUpForSaleTextBox.Foreground = Brushes.DarkMagenta;
+
+
+            publishingDateTextBox.Text = "Publishing date(yyyy/mm/dd)";
+            publishingDateTextBox.IsEnabled = false;
+            publishingDateTextBox.Foreground = Brushes.DarkMagenta;
 
         }
+
+
+        #region TextBoxes
 
 
         #region bookIdTextBox
@@ -132,7 +240,7 @@ namespace Library.View
 
         #endregion
 
-        
+
         #region authorIdTextBox
 
         private void authorIdTextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -248,7 +356,467 @@ namespace Library.View
             }
         }
 
+
         #endregion
+
+
+        #region genreIdTextBox
+
+        private void genreIdTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (genreIdTextBox.Text == "Genre Id")
+            {
+                genreIdTextBox.Text = String.Empty;
+                genreIdTextBox.Foreground = Brushes.Black;
+            }
+        }
+
+        private void genreIdTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (genreIdTextBox.Text == String.Empty)
+            {
+                genreIdTextBox.Text = "Genre Id";
+                genreIdTextBox.Foreground = Brushes.DarkMagenta;
+            }
+        }
+
+
+        #endregion
+
+
+        #region genreNameTextBox
+
+        private void genreNameTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (genreNameTextBox.Text == "Genre name")
+            {
+                genreNameTextBox.Text = String.Empty;
+                genreNameTextBox.Foreground = Brushes.Black;
+            }
+        }
+
+        private void genreNameTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (genreNameTextBox.Text == String.Empty)
+            {
+                genreNameTextBox.Text = "Genre name";
+                genreNameTextBox.Foreground = Brushes.DarkMagenta;
+            }
+        }
+
+
+        #endregion
+
+
+        #region publishingHouseIdTextBox
+
+        private void publishingHouseIdTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (publishingHouseIdTextBox.Text == "Publishing house Id")
+            {
+                publishingHouseIdTextBox.Text = String.Empty;
+                publishingHouseIdTextBox.Foreground = Brushes.Black;
+            }
+        }
+
+        private void publishingHouseIdTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (publishingHouseIdTextBox.Text == String.Empty)
+            {
+                publishingHouseIdTextBox.Text = "Publishing house Id";
+                publishingHouseIdTextBox.Foreground = Brushes.DarkMagenta;
+            }
+        }
+
+
+        #endregion
+
+
+        #region publishingHouseNameTextBox
+
+        private void publishingHouseNameTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (publishingHouseNameTextBox.Text == "Publishing house name")
+            {
+                publishingHouseNameTextBox.Text = String.Empty;
+                publishingHouseNameTextBox.Foreground = Brushes.Black;
+            }
+        }
+
+        private void publishingHouseNameTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (publishingHouseNameTextBox.Text == String.Empty)
+            {
+                publishingHouseNameTextBox.Text = "Publishing house name";
+                publishingHouseNameTextBox.Foreground = Brushes.DarkMagenta;
+            }
+        }
+        #endregion
+
+
+        #region bookonSaleIdTextBox
+
+        private void bookonSaleIdTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (bookonSaleIdTextBox.Text == "Book in sale Id")
+            {
+                bookonSaleIdTextBox.Text = String.Empty;
+                bookonSaleIdTextBox.Foreground = Brushes.Black;
+            }
+        }
+
+        private void bookonSaleIdTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (bookonSaleIdTextBox.Text == String.Empty)
+            {
+                bookonSaleIdTextBox.Text = "Book in sale Id";
+                bookonSaleIdTextBox.Foreground = Brushes.DarkMagenta;
+            }
+        }
+
+        #endregion
+
+
+        #region sellPriceTextBox
+
+        private void sellPriceTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (sellPriceTextBox.Text == "Sell price")
+            {
+                sellPriceTextBox.Text = String.Empty;
+                sellPriceTextBox.Foreground = Brushes.Black;
+            }
+        }
+
+        private void sellPriceTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (sellPriceTextBox.Text == String.Empty)
+            {
+                sellPriceTextBox.Text = "Sell price";
+                sellPriceTextBox.Foreground = Brushes.DarkMagenta;
+            }
+        }
+
+        #endregion
+
+
+        #region dicountTextBox
+
+        private void dicountTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (dicountTextBox.Text == "Discount(in %)")
+            {
+                dicountTextBox.Text = String.Empty;
+                dicountTextBox.Foreground = Brushes.Black;
+            }
+        }
+
+        private void dicountTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (dicountTextBox.Text == String.Empty)
+            {
+                dicountTextBox.Text = "Discount(in %)";
+                dicountTextBox.Foreground = Brushes.DarkMagenta;
+            }
+        }
+
+        #endregion
+
+
+        #region customerIdTextBox
+
+        private void customerIdTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (customerIdTextBox.Text == "Customer Id")
+            {
+                customerIdTextBox.Text = String.Empty;
+                customerIdTextBox.Foreground = Brushes.Black;
+            }
+        }
+
+        private void customerIdTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (customerIdTextBox.Text == String.Empty)
+            {
+                customerIdTextBox.Text = "Customer Id";
+                customerIdTextBox.Foreground = Brushes.DarkMagenta;
+            }
+        }
+
+        #endregion
+
+
+        #region datePutUpForSaleTextBox
+
+        private void datePutUpForSaleTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (datePutUpForSaleTextBox.Text == "Date put up for sale(yyyy/mm/dd)")
+            {
+                datePutUpForSaleTextBox.Text = String.Empty;
+                datePutUpForSaleTextBox.Foreground = Brushes.Black;
+            }
+        }
+
+        private void datePutUpForSaleTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (datePutUpForSaleTextBox.Text == String.Empty)
+            {
+                datePutUpForSaleTextBox.Text = "Date put up for sale(yyyy/mm/dd)";
+                datePutUpForSaleTextBox.Foreground = Brushes.DarkMagenta;
+            }
+        }
+
+
+        #endregion
+
+
+        #region publishingDateTextBox
+
+        private void publishingDateTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (publishingDateTextBox.Text == "Publishing date(yyyy/mm/dd)")
+            {
+                publishingDateTextBox.Text = String.Empty;
+                publishingDateTextBox.Foreground = Brushes.Black;
+            }
+        }
+
+        private void publishingDateTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (publishingDateTextBox.Text == String.Empty)
+            {
+                publishingDateTextBox.Text = "Publishing date(yyyy/mm/dd)";
+                publishingDateTextBox.Foreground = Brushes.DarkMagenta;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+        #endregion
+
+        #endregion
+
+
+
+        #region Buttons
+
+        private void addNewBookButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetDefaultPageSettings();
+
+            bookNameTextBox.IsEnabled = true;
+            numberOfPagesTextBox.IsEnabled = true;
+            costPriceTextBox.IsEnabled = true;
+            isSequelTextBox.IsEnabled = true;
+            authorIdTextBox.IsEnabled = true;
+
+            _adminPageViewModel.PrepareForNewBookAdding();
+        }
+
+        private void addNewAuthorButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetDefaultPageSettings();
+
+            authorFirstNameTextBox.IsEnabled = true;
+            authorlastNameTextBox.IsEnabled = true;
+
+            _adminPageViewModel.PrepareForNewAuthorAdding();
+        }
+
+        private void addNewGenreButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetDefaultPageSettings();
+
+            genreNameTextBox.IsEnabled = true;
+           
+            _adminPageViewModel.PrepareForNewGenreAdding();
+        }
+
+        private void addNewPublishinghouseButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetDefaultPageSettings();
+
+            publishingHouseNameTextBox.IsEnabled = true;
+           
+            _adminPageViewModel.PrepareForNewPubHouseAdding();
+        }
+
+        private void addbookOnSaleButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetDefaultPageSettings();
+
+            bookIdTextBox.IsEnabled = true;
+            sellPriceTextBox.IsEnabled = true;
+            datePutUpForSaleTextBox.IsEnabled = true;
+            publishingHouseIdTextBox.IsEnabled = true;
+            publishingDateTextBox.IsEnabled = true;
+           
+            _adminPageViewModel.PrepareForNewBookOnSaleAdding();
+        }
+
+        private void addGenreToBookButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetDefaultPageSettings();
+
+            bookIdTextBox.IsEnabled = true;
+            genreIdTextBox.IsEnabled = true;
+            
+            _adminPageViewModel.PrepareForNewGenreToBookAdding();
+        }
+
+        private void sellBookButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetDefaultPageSettings();
+
+            bookonSaleIdTextBox.IsEnabled = true;
+            customerIdTextBox.IsEnabled = true;
+           
+            _adminPageViewModel.PrepareForBookSelling();
+        }
+
+        private void addDiscountButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetDefaultPageSettings();
+
+            bookonSaleIdTextBox.IsEnabled = true;
+            dicountTextBox.IsEnabled = true;
+           
+            _adminPageViewModel.PrepareForDiscountAdding();
+        }
+
+        private void updateBookButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetDefaultPageSettings();
+
+            bookIdTextBox.IsEnabled = true;
+            bookNameTextBox.IsEnabled = true;
+            numberOfPagesTextBox.IsEnabled = true;
+            costPriceTextBox.IsEnabled = true;
+            isSequelTextBox.IsEnabled = true;
+            authorIdTextBox.IsEnabled = true;
+            
+            _adminPageViewModel.PrepareForBookUpdating();
+        }
+
+        private void updateAuthorButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetDefaultPageSettings();
+
+            authorIdTextBox.IsEnabled = true;
+            authorFirstNameTextBox.IsEnabled = true;
+            authorlastNameTextBox.IsEnabled = true;
+           
+            _adminPageViewModel.PrepareForAuthorUpdating();
+        }
+
+        private void updateGenreButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetDefaultPageSettings();
+
+            genreIdTextBox.IsEnabled = true;
+            genreNameTextBox.IsEnabled = true;
+
+            _adminPageViewModel.PrepareForGenreUpdating();
+        }
+
+        private void updatePublishinHouseButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetDefaultPageSettings();
+
+            publishingHouseIdTextBox.IsEnabled = true;
+            publishingHouseNameTextBox.IsEnabled = true;
+
+            _adminPageViewModel.PrepareForPubHouseUpdating();
+        }
+
+        private void updateBookOnSaleButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetDefaultPageSettings();
+
+            bookonSaleIdTextBox.IsEnabled = true;
+            bookIdTextBox.IsEnabled = true;
+            sellPriceTextBox.IsEnabled = true;
+            datePutUpForSaleTextBox.IsEnabled = true;
+            publishingHouseIdTextBox.IsEnabled = true;
+            publishingDateTextBox.IsEnabled = true;
+
+            _adminPageViewModel.PrepareForBookOnSaleUpdating();
+        }
+
+        private void removeDiscountButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetDefaultPageSettings();
+
+            bookonSaleIdTextBox.IsEnabled = true;
+            dicountTextBox.IsEnabled = true;
+
+            _adminPageViewModel.PrepareForDiscountRemove();
+        }
+
+        private void removeBookFromSaleButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetDefaultPageSettings();
+
+            bookonSaleIdTextBox.IsEnabled = true;
+
+            _adminPageViewModel.PrepareForSaleRemoval();
+        }
+
+        private void reserveBookButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetDefaultPageSettings();
+
+            bookonSaleIdTextBox.IsEnabled = true;
+            customerIdTextBox.IsEnabled = true;
+
+            _adminPageViewModel.PrepareForBookReserving();
+        }
+
+        #endregion
+
+
+
+        private void submitButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (_adminPageViewModel.BookAdding) SubmitBookAdding();
+
+
+
+        }
+
+        private void SubmitBookAdding()
+        {
+            Dictionary<string, string> d = new Dictionary<string, string>();
+
+            if (bookNameTextBox.Text != String.Empty && bookNameTextBox.Text != "Book name"
+                && numberOfPagesTextBox.Text != String.Empty && numberOfPagesTextBox.Text != "# of pages"
+                && costPriceTextBox.Text != String.Empty && costPriceTextBox.Text != "Cost Price"
+                && isSequelTextBox.Text != String.Empty && isSequelTextBox.Text != "Is sequel(0/1)"
+                && authorIdTextBox.Text != String.Empty && authorIdTextBox.Text != "Author Id")
+            {
+                d.Add("BookName", bookNameTextBox.Text);
+                d.Add("NumberOfPages", numberOfPagesTextBox.Text);
+                d.Add("CostPrice", costPriceTextBox.Text);
+                d.Add("IsSequel", isSequelTextBox.Text);
+                d.Add("AuthorId", authorIdTextBox.Text);
+
+                _adminPageViewModel.AddNewBook(d);
+                tableDataGrid.ItemsSource = _adminPageViewModel.GetBooks().DefaultView;
+            }
+
+
+
+
+        }
+
+
 
 
     }
