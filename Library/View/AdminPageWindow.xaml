@@ -261,7 +261,7 @@
                 </TextBox>
 
 
-                <TextBox Name="datePutUpForSaleTextBox" Text="Date put up for sale(yyyy/mm/dd)" Height="26" Width="190" Margin="230,5,0,5" Background="Wheat"
+                <TextBox Name="datePutUpForSaleTextBox" Text="Date put up for sale(mm/dd/yyyy)" Height="26" Width="190" Margin="230,5,0,5" Background="Wheat"
                          VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray" FontFamily="Times, Times New Roman, serif"
                          GotFocus="datePutUpForSaleTextBox_GotFocus" LostFocus="datePutUpForSaleTextBox_LostFocus">
                     <TextBox.Resources>
@@ -289,7 +289,7 @@
                 </TextBox>
 
 
-                <TextBox Name="publishingDateTextBox" Text="Publishing date(yyyy/mm/dd)" Height="26" Width="190" Margin="370,5,0,5" Background="Wheat"
+                <TextBox Name="publishingDateTextBox" Text="Publishing date(mm/dd/yyyy)" Height="26" Width="190" Margin="370,5,0,5" Background="Wheat"
                          VerticalContentAlignment="Center" Foreground="DarkMagenta" BorderBrush="DarkGray" FontFamily="Times, Times New Roman, serif"
                          GotFocus="publishingDateTextBox_GotFocus" LostFocus="publishingDateTextBox_LostFocus">
                     <TextBox.Resources>

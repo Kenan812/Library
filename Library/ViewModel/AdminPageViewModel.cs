@@ -1,8 +1,10 @@
 ﻿using Library.Model;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Windows;
 
 namespace Library.ViewModel
 {
@@ -89,11 +91,41 @@ namespace Library.ViewModel
         }
 
 
+
         #region Perform Operations
 
         public void AddNewBook(Dictionary<string, string> dictionary)
         {
             _libraryDbTool.UserRepository.BooksRepo.Insert(dictionary["BookName"], dictionary["NumberOfPages"], dictionary["AuthorId"], dictionary["CostPrice"], dictionary["IsSequel"]);
+        }
+
+        public void AddNewAuthor(Dictionary<string, string> dictionary)
+        {
+            _libraryDbTool.UserRepository.AuthorsRepo.Insert(dictionary["Author first name"], dictionary["Author last name"]);
+        }
+
+        public void AddNewGenre(Dictionary<string, string> dictionary)
+        {
+            _libraryDbTool.UserRepository.GenreRepo.Insert(dictionary["Genre name"]);
+        }
+
+        public void AddNewPublishingHouse(Dictionary<string, string> dictionary)
+        {
+            _libraryDbTool.UserRepository.PublishingHousesRepo.Insert(dictionary["Publishing house name"]);
+        }
+
+        public void AddNewBookOnSale(Dictionary<string, string> dictionary)
+        {
+            DateTimeConverter converter = new DateTimeConverter();
+            DateTime dateputupforsale = (DateTime)converter.ConvertFromString(dictionary["Date put up for sale"]);
+            DateTime publishingdate = (DateTime)converter.ConvertFromString(dictionary["Publishing date"]);
+
+            _libraryDbTool.UserRepository.BooksOnSalesRepo.Insert(dictionary["Book Id"], dictionary["Sell price"], dateputupforsale, dictionary["Publishing house Id"], publishingdate);
+        }
+
+        public void AddNewGenreToBook(Dictionary<string, string> dictionary)
+        {
+            _libraryDbTool.UserRepository.BooksGenresRepo.Insert(dictionary["Book Id"], dictionary["Genre Id"]);
         }
 
 

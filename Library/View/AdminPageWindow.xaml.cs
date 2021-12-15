@@ -157,12 +157,12 @@ namespace Library.View
             customerIdTextBox.Foreground = Brushes.DarkMagenta;
 
 
-            datePutUpForSaleTextBox.Text = "Date put up for sale(yyyy/mm/dd)";
+            datePutUpForSaleTextBox.Text = "Date put up for sale(mm/dd/yyyy)";
             datePutUpForSaleTextBox.IsEnabled = false;
             datePutUpForSaleTextBox.Foreground = Brushes.DarkMagenta;
 
 
-            publishingDateTextBox.Text = "Publishing date(yyyy/mm/dd)";
+            publishingDateTextBox.Text = "Publishing date(mm/dd/yyyy)";
             publishingDateTextBox.IsEnabled = false;
             publishingDateTextBox.Foreground = Brushes.DarkMagenta;
 
@@ -550,7 +550,7 @@ namespace Library.View
 
         private void datePutUpForSaleTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (datePutUpForSaleTextBox.Text == "Date put up for sale(yyyy/mm/dd)")
+            if (datePutUpForSaleTextBox.Text == "Date put up for sale(mm/dd/yyyy)")
             {
                 datePutUpForSaleTextBox.Text = String.Empty;
                 datePutUpForSaleTextBox.Foreground = Brushes.Black;
@@ -561,7 +561,7 @@ namespace Library.View
         {
             if (datePutUpForSaleTextBox.Text == String.Empty)
             {
-                datePutUpForSaleTextBox.Text = "Date put up for sale(yyyy/mm/dd)";
+                datePutUpForSaleTextBox.Text = "Date put up for sale(mm/dd/yyyy)";
                 datePutUpForSaleTextBox.Foreground = Brushes.DarkMagenta;
             }
         }
@@ -574,7 +574,7 @@ namespace Library.View
 
         private void publishingDateTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (publishingDateTextBox.Text == "Publishing date(yyyy/mm/dd)")
+            if (publishingDateTextBox.Text == "Publishing date(mm/dd/yyyy)")
             {
                 publishingDateTextBox.Text = String.Empty;
                 publishingDateTextBox.Foreground = Brushes.Black;
@@ -585,16 +585,10 @@ namespace Library.View
         {
             if (publishingDateTextBox.Text == String.Empty)
             {
-                publishingDateTextBox.Text = "Publishing date(yyyy/mm/dd)";
+                publishingDateTextBox.Text = "Publishing date(mm/dd/yyyy)";
                 publishingDateTextBox.Foreground = Brushes.DarkMagenta;
             }
         }
-
-
-
-
-
-
 
 
 
@@ -635,7 +629,7 @@ namespace Library.View
             SetDefaultPageSettings();
 
             genreNameTextBox.IsEnabled = true;
-           
+
             _adminPageViewModel.PrepareForNewGenreAdding();
         }
 
@@ -644,7 +638,7 @@ namespace Library.View
             SetDefaultPageSettings();
 
             publishingHouseNameTextBox.IsEnabled = true;
-           
+
             _adminPageViewModel.PrepareForNewPubHouseAdding();
         }
 
@@ -657,7 +651,7 @@ namespace Library.View
             datePutUpForSaleTextBox.IsEnabled = true;
             publishingHouseIdTextBox.IsEnabled = true;
             publishingDateTextBox.IsEnabled = true;
-           
+
             _adminPageViewModel.PrepareForNewBookOnSaleAdding();
         }
 
@@ -667,7 +661,7 @@ namespace Library.View
 
             bookIdTextBox.IsEnabled = true;
             genreIdTextBox.IsEnabled = true;
-            
+
             _adminPageViewModel.PrepareForNewGenreToBookAdding();
         }
 
@@ -677,7 +671,7 @@ namespace Library.View
 
             bookonSaleIdTextBox.IsEnabled = true;
             customerIdTextBox.IsEnabled = true;
-           
+
             _adminPageViewModel.PrepareForBookSelling();
         }
 
@@ -687,7 +681,7 @@ namespace Library.View
 
             bookonSaleIdTextBox.IsEnabled = true;
             dicountTextBox.IsEnabled = true;
-           
+
             _adminPageViewModel.PrepareForDiscountAdding();
         }
 
@@ -701,7 +695,7 @@ namespace Library.View
             costPriceTextBox.IsEnabled = true;
             isSequelTextBox.IsEnabled = true;
             authorIdTextBox.IsEnabled = true;
-            
+
             _adminPageViewModel.PrepareForBookUpdating();
         }
 
@@ -712,7 +706,7 @@ namespace Library.View
             authorIdTextBox.IsEnabled = true;
             authorFirstNameTextBox.IsEnabled = true;
             authorlastNameTextBox.IsEnabled = true;
-           
+
             _adminPageViewModel.PrepareForAuthorUpdating();
         }
 
@@ -787,8 +781,19 @@ namespace Library.View
         {
             if (_adminPageViewModel.BookAdding) SubmitBookAdding();
 
+            else if (_adminPageViewModel.AuthorAdding) SubmitAuthorAdding();
+
+            else if (_adminPageViewModel.GenreAdding) SubmitGenreAdding();
+
+            else if (_adminPageViewModel.PublishingHOuseAdding) SubmitPublishingHouseAdding();
+
+            else if (_adminPageViewModel.BookOnSaleAdding) SubmitBookOnSaleAdding();
+
+            else if (_adminPageViewModel.GenreToBookAdding) SubmitGenreToBookAdding();
 
 
+
+            SetDefaultPageSettings();
         }
 
         private void SubmitBookAdding()
@@ -810,12 +815,84 @@ namespace Library.View
                 _adminPageViewModel.AddNewBook(d);
                 tableDataGrid.ItemsSource = _adminPageViewModel.GetBooks().DefaultView;
             }
-
-
-
-
         }
 
+        private void SubmitAuthorAdding()
+        {
+            Dictionary<string, string> d = new Dictionary<string, string>();
+
+            if (authorFirstNameTextBox.Text != String.Empty && authorFirstNameTextBox.Text != "Author first name"
+                && authorlastNameTextBox.Text != String.Empty && authorlastNameTextBox.Text != "Author last name")
+            {
+                d.Add("Author first name", authorFirstNameTextBox.Text);
+                d.Add("Author last name", authorlastNameTextBox.Text);
+
+                _adminPageViewModel.AddNewAuthor(d);
+                tableDataGrid.ItemsSource = _adminPageViewModel.GetAuthors().DefaultView;
+            }
+        }
+
+        private void SubmitGenreAdding()
+        {
+            Dictionary<string, string> d = new Dictionary<string, string>();
+
+            if (genreNameTextBox.Text != String.Empty && authorFirstNameTextBox.Text != "Genre name")
+            {
+                d.Add("Genre name", genreNameTextBox.Text);
+
+                _adminPageViewModel.AddNewGenre(d);
+                tableDataGrid.ItemsSource = _adminPageViewModel.GetGenres().DefaultView;
+            }
+        }
+
+        private void SubmitPublishingHouseAdding()
+        {
+            Dictionary<string, string> d = new Dictionary<string, string>();
+
+            if (publishingHouseNameTextBox.Text != String.Empty && publishingHouseNameTextBox.Text != "Publishing house name")
+            {
+                d.Add("Publishing house name", publishingHouseNameTextBox.Text);
+
+                _adminPageViewModel.AddNewPublishingHouse(d);
+                tableDataGrid.ItemsSource = _adminPageViewModel.GetPublishingHouses().DefaultView;
+            }
+        }
+
+        private void SubmitBookOnSaleAdding()
+        {
+            Dictionary<string, string> d = new Dictionary<string, string>();
+
+            if (bookIdTextBox.Text != String.Empty && bookIdTextBox.Text != "Book Id" 
+                && publishingHouseIdTextBox.Text != String.Empty && bookIdTextBox.Text != "Publishing house Id"
+                && sellPriceTextBox.Text != String.Empty && bookIdTextBox.Text != "Sell price"
+                && datePutUpForSaleTextBox.Text != String.Empty && bookIdTextBox.Text != "Date put up for sale(mm/dd/yyyy)"
+                && publishingDateTextBox.Text != String.Empty && bookIdTextBox.Text != "Publishing date(mm/dd/yyyy)")
+            {
+                d.Add("Book Id", bookIdTextBox.Text);
+                d.Add("Publishing house Id", publishingHouseIdTextBox.Text);
+                d.Add("Sell price", sellPriceTextBox.Text);
+                d.Add("Date put up for sale", datePutUpForSaleTextBox.Text);
+                d.Add("Publishing date", publishingDateTextBox.Text);
+
+                _adminPageViewModel.AddNewBookOnSale(d);
+                tableDataGrid.ItemsSource = _adminPageViewModel.GetBooksOnSale().DefaultView;
+            }
+        }
+
+        private void SubmitGenreToBookAdding()
+        {
+            Dictionary<string, string> d = new Dictionary<string, string>();
+
+            if (genreIdTextBox.Text != String.Empty && genreIdTextBox.Text != "Genre Id"
+                && bookIdTextBox.Text != String.Empty && bookIdTextBox.Text != "Book Id")
+            {
+                d.Add("Genre Id", genreIdTextBox.Text);
+                d.Add("Book Id", bookIdTextBox.Text);
+
+                _adminPageViewModel.AddNewGenreToBook(d);
+            }
+
+        }
 
 
 
