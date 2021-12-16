@@ -61,5 +61,43 @@ namespace Library.Model.AllRepositories
         {
             return _booksOnSaleTable.GetBooksInfo();
         }
+
+        public void SellBook(int bookId)
+        {
+            try
+            {
+                _booksOnSaleTable.SellBook(bookId);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Message: {ex.Message}\n\n\nError Stack Trace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        public int GetBookId(string bookOnSaleId)
+        {
+            try
+            {
+                return _booksOnSaleTable.GetBookId(Int32.Parse(bookOnSaleId));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Message: {ex.Message}\n\n\nError Stack Trace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return -1;
+            }
+        }
+
+        public void AddDiscount(string bookOnSaleId, string discount)
+        {
+            try
+            {
+                _booksOnSaleTable.AddDiscount(Int32.Parse(bookOnSaleId), float.Parse(discount));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Message: {ex.Message}\n\n\nError Stack Trace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
     }
 }

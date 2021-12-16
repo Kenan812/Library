@@ -75,9 +75,6 @@ namespace Library.Model.Tables
                 SqlCommand command = new SqlCommand(query, _connection);
 
                 command.ExecuteNonQuery();
-
-                BooksOnSaleTable booksOnSaleTable = new BooksOnSaleTable(Resources.connectionString);
-                booksOnSaleTable.SellBook(Int32.Parse(bookId));
             }
             catch (Exception ex)
             {
@@ -103,7 +100,7 @@ namespace Library.Model.Tables
         {
             try
             {
-                string query = @"SELECT Books.Id, Books.BookName, Authors.FirstName + ' ' +Authors.LastName AS 'Author', Books.NumberOfPages, Customers.Id, Customers.FirstName + ' ' +Customers.LastName AS 'Customer'
+                string query = @"SELECT Books.Id AS 'BookId', Books.BookName, Authors.FirstName + ' ' +Authors.LastName AS 'Author', Books.NumberOfPages, Customers.Id, Customers.FirstName + ' ' +Customers.LastName AS 'Customer'
                                     FROM SoldBooks
                                     LEFT JOIN Books ON SoldBooks.BookId = Books.Id
                                     LEFT JOIN Authors ON Authors.Id = Books.AuthorId

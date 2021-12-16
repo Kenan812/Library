@@ -61,5 +61,23 @@ namespace Library.Model.AllRepositories
             return _authorsTable.GetAuthorsInfo();
         }
 
+
+        /// <summary>
+        /// RETURN: 
+        ///     values[0] = firstname
+        ///     values[1] = lastname
+        /// </summary>
+        public List<string> GetAuthorInfo(string authorId)
+        {
+            try
+            {
+                return _authorsTable.GetAuthorInfo(Int32.Parse(authorId));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Message: {ex.Message}\n\n\nError Stack Trace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return null;
+            }
+        }
     }
 }

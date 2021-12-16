@@ -55,10 +55,29 @@ namespace Library.Model.AllRepositories
             _publishingHousesTable.InsertAllInitialValues();
         }
 
-
         public DataTable GetPublishingHousesInfo()
         {
             return _publishingHousesTable.GetPublishingHousesInfo();
         }
+
+
+        /// <summary>
+        /// RETURN: 
+        ///     values[0] = publishing house name
+        /// </summary>
+        public List<string> GetPublishingHouseInfo(string pubHouseId)
+        {
+            try
+            {
+                return _publishingHousesTable.GetPublishingHouseInfo(Int32.Parse(pubHouseId));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Message: {ex.Message}\n\n\nError Stack Trace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return null;
+            }
+        }
+
+
     }
 }

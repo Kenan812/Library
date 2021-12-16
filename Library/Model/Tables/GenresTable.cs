@@ -181,5 +181,31 @@ namespace Library.Model.Tables
             return null;
         }
 
+
+
+        /// <summary>
+        /// RETURN: 
+        ///     values[0] = genrename
+        /// </summary>
+        public List<string> GetGenreInfo(int genreId)
+        {
+            try
+            {
+                string query = $"SELECT Genres.GenreName FROM Genres WHERE Id = '{genreId}'";
+
+                return IEnumerableToStringList.ToStringList(_connection.Query(query));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Message: {ex.Message}\n\n\nError Stack Trace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return null;
+        }
+
+
+
+
+
     }
 }

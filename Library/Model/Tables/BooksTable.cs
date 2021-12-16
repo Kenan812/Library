@@ -4,6 +4,7 @@ using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
 using System.Windows;
 
@@ -214,5 +215,32 @@ namespace Library.Model.Tables
 
             return null;
         }
+
+
+        /// <summary>
+        /// RETURN: 
+        ///     values[0] = bookname
+        ///     values[1] = numberofpages
+        ///     values[2] = authorid
+        ///     values[3] = costprice
+        ///     values[4] = issequel
+        /// </summary>
+        public List<string> GetBookInfo(int bookId)
+        {
+            try
+            {
+                string query = $"SELECT Books.BookName, Books.NumberOfPages, Books.AuthorId, Books.CostPrice, Books.IsSequel FROM Books WHERE Id = '{bookId}'";
+
+                return IEnumerableToStringList.ToStringList(_connection.Query(query));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Message: {ex.Message}\n\n\nError Stack Trace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return null;
+        }
+
+
     }
 }

@@ -180,6 +180,27 @@ namespace Library.Model.Tables
         }
 
 
+        /// <summary>
+        /// RETURN: 
+        ///     values[0] = firstname
+        ///     values[1] = lastname
+        /// </summary>
+        public List<string> GetAuthorInfo(int authorId)
+        {
+            try
+            {
+                string query = $"SELECT Authors.FirstName, Authors.LastName FROM Authors WHERE Authors.Id = '{authorId}'";
+
+                return IEnumerableToStringList.ToStringList(_connection.Query(query));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Message: {ex.Message}\n\n\nError Stack Trace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return null;
+        }
+
 
     }
 }

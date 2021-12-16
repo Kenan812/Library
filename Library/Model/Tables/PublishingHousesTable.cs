@@ -158,7 +158,6 @@ namespace Library.Model.Tables
             Insert(new List<string> { "Iliya Glazunov & Co" });  // 17
         }
 
-
         public DataTable GetPublishingHousesInfo()
         {
             try
@@ -177,6 +176,27 @@ namespace Library.Model.Tables
 
             return null;
         }
+
+        /// <summary>
+        /// RETURN: 
+        ///     values[0] = publishing house name
+        /// </summary>
+        public List<string> GetPublishingHouseInfo(int pubHouseId)
+        {
+            try
+            {
+                string query = $"SELECT PublishingHouses.PhouseName FROM PublishingHouses WHERE Id = '{pubHouseId}'";
+
+                return IEnumerableToStringList.ToStringList(_connection.Query(query));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Message: {ex.Message}\n\n\nError Stack Trace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return null;
+        }
+
 
     }
 }

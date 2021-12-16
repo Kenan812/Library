@@ -749,7 +749,6 @@ namespace Library.View
             SetDefaultPageSettings();
 
             bookonSaleIdTextBox.IsEnabled = true;
-            dicountTextBox.IsEnabled = true;
 
             _adminPageViewModel.PrepareForDiscountRemove();
         }
@@ -791,8 +790,20 @@ namespace Library.View
 
             else if (_adminPageViewModel.GenreToBookAdding) SubmitGenreToBookAdding();
 
+            else if (_adminPageViewModel.BookSelling) SubmitBookSelling();
+
+            else if (_adminPageViewModel.DiscountAdding) SubmitDiscountAdding();
+
+            else if (_adminPageViewModel.BookUpdating) SubmitBookUpdating();
+
+            else if (_adminPageViewModel.AuthorUpdating) SubmitAuthorUpdating();
+
+            else if (_adminPageViewModel.GenreUpdating) SubmitGenreUpdating();
+
+            else if (_adminPageViewModel.PublisherHouseUpdating) SubmitPublishingHouseUpdating();
 
 
+            _adminPageViewModel.SetAllActionsToFalse();
             SetDefaultPageSettings();
         }
 
@@ -890,6 +901,145 @@ namespace Library.View
                 d.Add("Book Id", bookIdTextBox.Text);
 
                 _adminPageViewModel.AddNewGenreToBook(d);
+            }
+        }
+
+        private void SubmitBookSelling()
+        {
+            Dictionary<string, string> d = new Dictionary<string, string>();
+
+            if (bookonSaleIdTextBox.Text != String.Empty && bookonSaleIdTextBox.Text != "Book in sale Id"
+                && customerIdTextBox.Text != String.Empty && customerIdTextBox.Text != "Customer Id")
+            {
+                d.Add("Book in sale Id", bookonSaleIdTextBox.Text);
+                d.Add("Customer Id", customerIdTextBox.Text);
+
+                _adminPageViewModel.SellBook(d);
+                tableDataGrid.ItemsSource = _adminPageViewModel.GetSoldBooks().DefaultView;
+            }
+        }
+
+        private void SubmitDiscountAdding()
+        {
+            Dictionary<string, string> d = new Dictionary<string, string>();
+
+            if (dicountTextBox.Text != String.Empty && dicountTextBox.Text != "Discount(in %)"
+                && bookonSaleIdTextBox.Text != String.Empty && bookonSaleIdTextBox.Text != "Book in sale Id")
+            {
+                d.Add("Book in sale Id", bookonSaleIdTextBox.Text);
+                d.Add("Discount", dicountTextBox.Text);
+
+                _adminPageViewModel.AddDiscount(d);
+                tableDataGrid.ItemsSource = _adminPageViewModel.GetBooksOnSale().DefaultView;
+
+            }
+        }
+
+        private void SubmitBookUpdating()
+        {
+            Dictionary<string, string> d = new Dictionary<string, string>();
+
+            if (bookNameTextBox.Text != String.Empty && bookNameTextBox.Text != "Book name")
+                d.Add("Book name", bookNameTextBox.Text);
+            else
+                d.Add("Book name", String.Empty);
+
+
+            if (numberOfPagesTextBox.Text != String.Empty && numberOfPagesTextBox.Text != "# of pages")
+                d.Add("Number of pages", numberOfPagesTextBox.Text);
+            else
+                d.Add("Number of pages", String.Empty);
+
+
+            if (costPriceTextBox.Text != String.Empty && costPriceTextBox.Text != "Cost Price")
+                d.Add("Cost Price", costPriceTextBox.Text);
+            else
+                d.Add("Cost Price", String.Empty);
+
+
+            if (isSequelTextBox.Text != String.Empty && isSequelTextBox.Text != "Is sequel(0/1)")
+                d.Add("Is sequel", isSequelTextBox.Text);
+            else
+                d.Add("Is sequel", String.Empty);
+
+
+            if (authorIdTextBox.Text != String.Empty && authorIdTextBox.Text != "Author Id")
+                d.Add("Author Id", authorIdTextBox.Text);
+            else
+                d.Add("Author Id", String.Empty);
+
+
+            if (bookIdTextBox.Text != String.Empty && authorIdTextBox.Text != "Book Id")
+            {
+                d.Add("Book Id", bookIdTextBox.Text);
+
+                _adminPageViewModel.UpdateBook(d);
+                tableDataGrid.ItemsSource = _adminPageViewModel.GetBooks().DefaultView;
+            }
+
+
+        }
+
+        private void SubmitAuthorUpdating()
+        {
+            Dictionary<string, string> d = new Dictionary<string, string>();
+            
+            if (authorFirstNameTextBox.Text != String.Empty && authorFirstNameTextBox.Text != "Author first name")
+                d.Add("Author first name", authorFirstNameTextBox.Text);
+            else
+                d.Add("Author first name", String.Empty);
+
+
+            if (authorlastNameTextBox.Text != String.Empty && authorlastNameTextBox.Text != "Author last name")
+                d.Add("Author last name", authorlastNameTextBox.Text);
+            else
+                d.Add("Author last name", String.Empty);
+
+
+            if (authorIdTextBox.Text != String.Empty && authorIdTextBox.Text != "Author Id")
+            {
+                d.Add("Author Id", authorIdTextBox.Text);
+
+                _adminPageViewModel.UpdateAuthor(d);
+                tableDataGrid.ItemsSource = _adminPageViewModel.GetAuthors().DefaultView;
+            }
+        }
+
+        private void SubmitGenreUpdating()
+        {
+            Dictionary<string, string> d = new Dictionary<string, string>();
+
+            if (genreNameTextBox.Text != String.Empty && genreNameTextBox.Text != "Genre name")
+                d.Add("Genre name", genreNameTextBox.Text);
+            else
+                d.Add("Genre name", String.Empty);
+
+
+            if (genreIdTextBox.Text != String.Empty && genreIdTextBox.Text != "Genre Id")
+            {
+                d.Add("Genre Id", genreIdTextBox.Text);
+
+                _adminPageViewModel.UpdateGenre(d);
+                tableDataGrid.ItemsSource = _adminPageViewModel.GetGenres().DefaultView;
+            }
+        }
+
+        private void SubmitPublishingHouseUpdating()
+        {
+            Dictionary<string, string> d = new Dictionary<string, string>();
+
+            if (publishingHouseNameTextBox.Text != String.Empty && publishingHouseNameTextBox.Text != "Publishing house name")
+                d.Add("Publishing house name", publishingHouseNameTextBox.Text);
+            else
+                d.Add("Publishing house name", String.Empty);
+
+
+            if (publishingHouseIdTextBox.Text != String.Empty && publishingHouseIdTextBox.Text != "Publishing house Id")
+            {
+                d.Add("Publishing house Id", publishingHouseIdTextBox.Text);
+
+                _adminPageViewModel.UpdatePublishingHouse(d);
+                tableDataGrid.ItemsSource = _adminPageViewModel.GetPublishingHouses().DefaultView;
             }
 
         }

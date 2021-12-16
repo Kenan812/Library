@@ -1,6 +1,5 @@
 ﻿using Library.Model;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -128,10 +127,115 @@ namespace Library.ViewModel
             _libraryDbTool.UserRepository.BooksGenresRepo.Insert(dictionary["Book Id"], dictionary["Genre Id"]);
         }
 
+        public void SellBook(Dictionary<string, string> dictionary)
+        {
+            _libraryDbTool.UserRepository.SoldBooksRepo.Insert(dictionary["Book in sale Id"], dictionary["Customer Id"], DateTime.Now);
+            _libraryDbTool.UserRepository.BooksOnSalesRepo.SellBook(_libraryDbTool.UserRepository.BooksOnSalesRepo.GetBookId(dictionary["Book in sale Id"]));
+        }
+
+        public void AddDiscount(Dictionary<string, string> dictionary)
+        {
+            _libraryDbTool.UserRepository.BooksOnSalesRepo.AddDiscount(dictionary["Book in sale Id"], dictionary["Discount"]);
+        }
+
+        public void UpdateBook(Dictionary<string, string> dictionary)
+        {
+            try
+            {
+
+                List<string> l = _libraryDbTool.UserRepository.BooksRepo.GetBookInfo(dictionary["Book Id"]);
+
+                string bookName = l[0];
+                string numberOfPages = l[1];
+                string authorId = l[2];
+                string costPrice = l[3];
+                string isSequel = l[4];
+
+
+                if (dictionary["Book name"] != String.Empty)
+                    bookName = dictionary["Book name"];
+
+                if (dictionary["Number of pages"] != String.Empty)
+                    numberOfPages = dictionary["Number of pages"];
+
+                if (dictionary["Author Id"] != String.Empty)
+                    authorId = dictionary["Author Id"];
+
+                if (dictionary["Cost Price"] != String.Empty)
+                    costPrice = dictionary["Cost Price"];
+
+                if (dictionary["Is sequel"] != String.Empty)
+                    isSequel = dictionary["Is sequel"];
+
+                _libraryDbTool.UserRepository.BooksRepo.Update(dictionary["Book Id"], bookName, numberOfPages, authorId, costPrice, isSequel);
+
+            }
+            catch (Exception)
+            { MessageBox.Show("Invalid id", "Error", MessageBoxButton.OK, MessageBoxImage.Error); }
+        }
+
+        public void UpdateAuthor(Dictionary<string, string> dictionary)
+        {
+            try
+            {
+                List<string> l = _libraryDbTool.UserRepository.AuthorsRepo.GetAuthorInfo(dictionary["Author Id"]);
+
+                string firstName = l[0];
+                string lastName = l[1];
+
+                if (dictionary["Author first name"] != String.Empty)
+                    firstName = dictionary["Author first name"];
+
+                if (dictionary["Author last name"] != String.Empty)
+                    lastName = dictionary["Author last name"];
+
+                _libraryDbTool.UserRepository.AuthorsRepo.Update(dictionary["Author Id"], firstName, lastName);
+
+            }
+            catch (Exception)
+            { MessageBox.Show("Invalid id", "Error", MessageBoxButton.OK, MessageBoxImage.Error); }
+        }
+
+        public void UpdateGenre(Dictionary<string, string> dictionary)
+        {
+            try
+            {
+                List<string> l = _libraryDbTool.UserRepository.GenreRepo.GetGenreInfo(dictionary["Genre Id"]);
+
+                string genreName = l[0];
+
+                if (dictionary["Genre name"] != String.Empty)
+                    genreName = dictionary["Genre name"];
+
+                _libraryDbTool.UserRepository.GenreRepo.Update(dictionary["Genre Id"], genreName);
+
+            }
+            catch (Exception)
+            { MessageBox.Show("Invalid id", "Error", MessageBoxButton.OK, MessageBoxImage.Error); }
+        }
+
+        public void UpdatePublishingHouse(Dictionary<string, string> dictionary)
+        {
+            try
+            {
+                List<string> l = _libraryDbTool.UserRepository.PublishingHousesRepo.GetPublishingHouseInfo(dictionary["Publishing house Id"]);
+
+                string pubHouseName = l[0];
+
+                if (dictionary["Publishing house name"] != String.Empty)
+                    pubHouseName = dictionary["Publishing house name"];
+
+                _libraryDbTool.UserRepository.PublishingHousesRepo.Update(dictionary["Publishing house Id"], pubHouseName);
+
+            }
+            catch (Exception)
+            { MessageBox.Show("Invalid id", "Error", MessageBoxButton.OK, MessageBoxImage.Error); }
+        }
+
+
 
 
         #endregion
-
 
 
 
@@ -238,7 +342,7 @@ namespace Library.ViewModel
         #endregion
 
 
-        private void SetAllActionsToFalse()
+        public void SetAllActionsToFalse()
         {
             _bookAdding = false;
             _authorAdding = false;

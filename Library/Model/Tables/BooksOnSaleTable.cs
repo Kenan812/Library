@@ -233,8 +233,53 @@ namespace Library.Model.Tables
             return null;
         }
 
+        public int GetBookId(int bookOnSaleId)
+        {
+            try
+            {
+                _connection.Open();
 
-    
+                string query = $"SELECT BooksOnSale.BookId FROM BooksOnSale WHERE Id = '{bookOnSaleId}'";
+
+                SqlCommand command = new SqlCommand(query, _connection);
+
+                return (int)command.ExecuteScalar();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Message: {ex.Message}\n\n\nError Stack Trace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+
+            return -1;
+        }
+
+        public void AddDiscount(int bookOnSaleId, float discount)
+        {
+            try
+            {
+                _connection.Open();
+
+                string query = $"UPDATE BooksOnSale SET Discount = '{discount}' WHERE Id = '{bookOnSaleId}'";
+
+                SqlCommand command = new SqlCommand(query, _connection);
+
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Message: {ex.Message}\n\n\nError Stack Trace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
+
 
     }
 }

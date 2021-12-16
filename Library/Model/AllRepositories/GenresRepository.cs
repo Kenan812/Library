@@ -61,5 +61,25 @@ namespace Library.Model.AllRepositories
             return _genresTable.GetGenresInfo();
         }
 
+
+        /// <summary>
+        /// RETURN: 
+        ///     values[0] = genrename
+        /// </summary>
+        public List<string> GetGenreInfo(string genreId)
+        {
+            try
+            {
+                return _genresTable.GetGenreInfo(Int32.Parse(genreId));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Message: {ex.Message}\n\n\nError Stack Trace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return null;
+            }
+        }
+
+
+
     }
 }

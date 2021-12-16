@@ -60,5 +60,27 @@ namespace Library.Model.AllRepositories
             return _booksTable.GetBooksInfo();
         }
 
+
+        /// <summary>
+        /// RETURN: 
+        ///     values[0] = bookname
+        ///     values[1] = numberofpages
+        ///     values[2] = authorid
+        ///     values[3] = costprice
+        ///     values[4] = issequel
+        /// </summary>
+        public List<string> GetBookInfo(string bookId)
+        {
+            try
+            {
+                return _booksTable.GetBookInfo(Int32.Parse(bookId));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Message: {ex.Message}\n\n\nError Stack Trace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return null;
+            }
+        }
+
     }
 }
