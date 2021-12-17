@@ -54,6 +54,9 @@ namespace Library.ViewModel
             SetAllActionsToFalse();
         }
 
+
+        #region Get Tables
+
         public DataTable GetBooksOnSale()
         {
             return _libraryDbTool.UserRepository.BooksOnSalesRepo.GetBooksInfo();
@@ -88,6 +91,8 @@ namespace Library.ViewModel
         {
             return _libraryDbTool.UserRepository.SoldBooksRepo.GetSoldBooksInfo();
         }
+
+        #endregion
 
 
 
@@ -228,10 +233,77 @@ namespace Library.ViewModel
                 _libraryDbTool.UserRepository.PublishingHousesRepo.Update(dictionary["Publishing house Id"], pubHouseName);
 
             }
-            catch (Exception)
-            { MessageBox.Show("Invalid id", "Error", MessageBoxButton.OK, MessageBoxImage.Error); }
+            catch (Exception) { MessageBox.Show("Invalid id", "Error", MessageBoxButton.OK, MessageBoxImage.Error); }
         }
 
+        public void UpdateBookOnSale(Dictionary<string, string> dictionary)
+        {
+            try
+            {
+                List<string> l = _libraryDbTool.UserRepository.BooksOnSalesRepo.GetBookOnSaleInfo(dictionary["Book in sale Id"]);
+
+                DateTimeConverter converter = new DateTimeConverter();
+
+                string bookid = l[0];
+                string price = l[1];
+                DateTime dateputupforsale = (DateTime)converter.ConvertFromString(l[2]);
+                string publishinghouseid = l[3];
+                DateTime publishingdate = (DateTime)converter.ConvertFromString(l[4]);
+
+
+                if (dictionary["Book Id"] != String.Empty)
+                    bookid = dictionary["Book Id"];
+
+                if (dictionary["Publishing house Id"] != String.Empty)
+                    publishinghouseid = dictionary["Publishing house Id"];
+
+
+                if (dictionary["Sell price"] != String.Empty)
+                    price = dictionary["Sell price"];
+
+
+                if (dictionary["Date put up for sale"] != String.Empty)
+                    dateputupforsale = (DateTime)converter.ConvertFromString(dictionary["Date put up for sale"]);
+
+
+                if (dictionary["Publishing date"] != String.Empty)
+                    publishingdate = (DateTime)converter.ConvertFromString(dictionary["Publishing date"]);
+
+
+                _libraryDbTool.UserRepository.BooksOnSalesRepo.Update(dictionary["Book in sale Id"], bookid, price, dateputupforsale, publishinghouseid, publishingdate);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Invalid id", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        public void RemoveDiscout(Dictionary<string, string> dictionary)
+        {
+            try
+            {
+                _libraryDbTool.UserRepository.BooksOnSalesRepo.RemoveDiscount(dictionary["Book in sale Id"]);
+            }
+            catch (Exception) { MessageBox.Show("Invalid id", "Error", MessageBoxButton.OK, MessageBoxImage.Error); }
+        }
+
+        public void RemoveBookOnSale(Dictionary<string, string> dictionary)
+        {
+            try
+            {
+                _libraryDbTool.UserRepository.BooksOnSalesRepo.Delete(dictionary["Book in sale Id"]);
+            }
+            catch (Exception) { MessageBox.Show("Invalid id", "Error", MessageBoxButton.OK, MessageBoxImage.Error); }
+        }
+
+        public void ReserveBookOnSale(Dictionary<string, string> dictionary)
+        {
+            try
+            {
+                _libraryDbTool.UserRepository.ReservedBooksRepo.Insert(dictionary["Book in sale Id"], dictionary["Customer Id"], DateTime.Now);
+            }
+            catch (Exception) { MessageBox.Show("Invalid id", "Error", MessageBoxButton.OK, MessageBoxImage.Error); }
+        }
 
 
 

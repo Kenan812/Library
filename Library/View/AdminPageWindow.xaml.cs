@@ -23,6 +23,10 @@ namespace Library.View
             SetDefaultPageSettings();
         }
 
+
+
+        #region Show Buttons
+
         private void showBooksButton_Click(object sender, RoutedEventArgs e)
         {
             tableDataGrid.ItemsSource = _adminPageViewModel.GetBooksOnSale().DefaultView;
@@ -73,6 +77,7 @@ namespace Library.View
             }
         }
 
+        #endregion
 
 
 
@@ -802,10 +807,19 @@ namespace Library.View
 
             else if (_adminPageViewModel.PublisherHouseUpdating) SubmitPublishingHouseUpdating();
 
+            else if (_adminPageViewModel.BookOnSaleUpdating) SubmitBookOnSaleUpdating();
+
+            else if (_adminPageViewModel.DicountRemove) SubmitDiscountRemoval();
+
+            else if (_adminPageViewModel.BookSaleRemove) SubmitBookOnSaleRemoval();
+
+            else if (_adminPageViewModel.BookReserving) SubmitBookReserve();
 
             _adminPageViewModel.SetAllActionsToFalse();
             SetDefaultPageSettings();
         }
+
+
 
         private void SubmitBookAdding()
         {
@@ -847,7 +861,7 @@ namespace Library.View
         {
             Dictionary<string, string> d = new Dictionary<string, string>();
 
-            if (genreNameTextBox.Text != String.Empty && authorFirstNameTextBox.Text != "Genre name")
+            if (genreNameTextBox.Text != String.Empty && genreNameTextBox.Text != "Genre name")
             {
                 d.Add("Genre name", genreNameTextBox.Text);
 
@@ -874,10 +888,10 @@ namespace Library.View
             Dictionary<string, string> d = new Dictionary<string, string>();
 
             if (bookIdTextBox.Text != String.Empty && bookIdTextBox.Text != "Book Id" 
-                && publishingHouseIdTextBox.Text != String.Empty && bookIdTextBox.Text != "Publishing house Id"
-                && sellPriceTextBox.Text != String.Empty && bookIdTextBox.Text != "Sell price"
-                && datePutUpForSaleTextBox.Text != String.Empty && bookIdTextBox.Text != "Date put up for sale(mm/dd/yyyy)"
-                && publishingDateTextBox.Text != String.Empty && bookIdTextBox.Text != "Publishing date(mm/dd/yyyy)")
+                && publishingHouseIdTextBox.Text != String.Empty && publishingHouseIdTextBox.Text != "Publishing house Id"
+                && sellPriceTextBox.Text != String.Empty && sellPriceTextBox.Text != "Sell price"
+                && datePutUpForSaleTextBox.Text != String.Empty && datePutUpForSaleTextBox.Text != "Date put up for sale(mm/dd/yyyy)"
+                && publishingDateTextBox.Text != String.Empty && publishingDateTextBox.Text != "Publishing date(mm/dd/yyyy)")
             {
                 d.Add("Book Id", bookIdTextBox.Text);
                 d.Add("Publishing house Id", publishingHouseIdTextBox.Text);
@@ -1044,6 +1058,87 @@ namespace Library.View
 
         }
 
+        private void SubmitBookOnSaleUpdating()
+        {
+            Dictionary<string, string> d = new Dictionary<string, string>();
+           
+            if (bookIdTextBox.Text != String.Empty && bookIdTextBox.Text != "Book Id")
+                d.Add("Book Id", bookIdTextBox.Text);
+            else
+                d.Add("Book Id", String.Empty);
+
+            if (publishingHouseIdTextBox.Text != String.Empty && publishingHouseIdTextBox.Text != "Publishing house Id")
+                d.Add("Publishing house Id", publishingHouseIdTextBox.Text);
+            else
+                d.Add("Publishing house Id", String.Empty);
+
+            if (sellPriceTextBox.Text != String.Empty && sellPriceTextBox.Text != "Sell price")
+                d.Add("Sell price", sellPriceTextBox.Text);
+            else
+                d.Add("Sell price", String.Empty);
+
+            if (datePutUpForSaleTextBox.Text != String.Empty && datePutUpForSaleTextBox.Text != "Date put up for sale(mm/dd/yyyy)")
+                d.Add("Date put up for sale", datePutUpForSaleTextBox.Text);
+            else
+                d.Add("Date put up for sale", String.Empty);
+
+            if (publishingDateTextBox.Text != String.Empty && publishingDateTextBox.Text != "Publishing date(mm/dd/yyyy)")
+                d.Add("Publishing date", publishingDateTextBox.Text);
+            else
+                d.Add("Publishing date", String.Empty);
+
+
+
+            if (bookonSaleIdTextBox.Text != String.Empty && bookonSaleIdTextBox.Text != "Book in sale Id")
+            {
+                d.Add("Book in sale Id", bookonSaleIdTextBox.Text);
+
+                _adminPageViewModel.UpdateBookOnSale(d);
+                tableDataGrid.ItemsSource = _adminPageViewModel.GetBooksOnSale().DefaultView;
+            }
+        }
+
+        private void SubmitDiscountRemoval()
+        {
+            Dictionary<string, string> d = new Dictionary<string, string>();
+
+            if (bookonSaleIdTextBox.Text != String.Empty && bookonSaleIdTextBox.Text != "Book in sale Id")
+            {
+                d.Add("Book in sale Id", bookonSaleIdTextBox.Text);
+
+                _adminPageViewModel.RemoveDiscout(d);
+                tableDataGrid.ItemsSource = _adminPageViewModel.GetBooksOnSale().DefaultView;
+            }
+        }
+
+        private void SubmitBookOnSaleRemoval()
+        {
+            Dictionary<string, string> d = new Dictionary<string, string>();
+
+            if (bookonSaleIdTextBox.Text != String.Empty && bookonSaleIdTextBox.Text != "Book in sale Id")
+            {
+                d.Add("Book in sale Id", bookonSaleIdTextBox.Text);
+
+                _adminPageViewModel.RemoveBookOnSale(d);
+                tableDataGrid.ItemsSource = _adminPageViewModel.GetBooksOnSale().DefaultView;
+            }
+        }
+
+        private void SubmitBookReserve()
+        {
+            Dictionary<string, string> d = new Dictionary<string, string>();
+
+            if (bookonSaleIdTextBox.Text != String.Empty && bookonSaleIdTextBox.Text != "Book in sale Id"
+                && customerIdTextBox.Text != String.Empty && customerIdTextBox.Text != "Customer Id")
+            {
+                d.Add("Book in sale Id", bookonSaleIdTextBox.Text);
+                d.Add("Customer Id", customerIdTextBox.Text);
+
+                _adminPageViewModel.ReserveBookOnSale(d);
+                tableDataGrid.ItemsSource = _adminPageViewModel.GetBooksOnSale().DefaultView;
+            }
+
+        }
 
 
     }

@@ -99,5 +99,43 @@ namespace Library.Model.AllRepositories
             }
         }
 
+
+        /// <summary>
+        /// RETURN: 
+        ///     values[0] = book id
+        ///     values[1] = price
+        ///     values[2] = date put up for sale(mm/dd/yyyy)
+        ///     values[3] = publishing house id
+        ///     values[4] = publishing date(mm/dd/yyyy)
+        /// </summary>
+        public List<string> GetBookOnSaleInfo(string bookOnSaleId)
+        {
+            try
+            {
+                return _booksOnSaleTable.GetBookOnSaleInfo(Int32.Parse(bookOnSaleId));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Message: {ex.Message}\n\n\nError Stack Trace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return null;
+            }
+        }
+
+
+        public void RemoveDiscount(string bookOnSaleId)
+        {
+            try
+            {
+                _booksOnSaleTable.AddDiscount(Int32.Parse(bookOnSaleId), 0);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Message: {ex.Message}\n\n\nError Stack Trace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+
+
+
     }
 }

@@ -281,5 +281,28 @@ namespace Library.Model.Tables
         }
 
 
+        /// <summary>
+        /// RETURN: 
+        ///     values[0] = book id
+        ///     values[1] = price
+        ///     values[2] = date put up for sale(mm/dd/yyyy)
+        ///     values[3] = publishing house id
+        ///     values[4] = publishing date(mm/dd/yyyy)
+        /// </summary>
+        public List<string> GetBookOnSaleInfo(int bookOnSaleId)
+        {
+            try
+            {
+                string query = $"SELECT BooksOnSale.BookId, BooksOnSale.Price, BooksOnSale.DatePutUpForSale, BooksOnSale.PublishingHouseId, BooksOnSale.PublishingDate FROM BooksOnSale WHERE Id = '{bookOnSaleId}'";
+
+                return IEnumerableToStringList.ToStringList(_connection.Query(query));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Message: {ex.Message}\n\n\nError Stack Trace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return null;
+        }
     }
 }
