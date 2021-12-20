@@ -5,8 +5,98 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Library.View"
         mc:Ignorable="d"
-        Title="CustomerPageWindow" Height="450" Width="800">
+        Title="CustomerPageWindow" Height="450" Width="800" Background="#cccccc" ResizeMode="CanMinimize">
     <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="0.8*"/>
+        </Grid.RowDefinitions>
+
+
+        <StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Label FontSize="15" Foreground="Red" Content="User: "/>
+                <Label Name="usernameLabel" FontSize="15" Foreground="Red"/>
+            </StackPanel>
+
+            <Button Name="showBooksButton" Content="Show my books" Width="150" Height="25" 
+                    HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="#85f9f9" 
+                    Background="#666666" Click="showBooksButton_Click"/>
+
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+
+                <ComboBox Name="searchComboBox" Width="175" Background="LightGray" Margin="10,0,0,0">
+
+                    <ComboBoxItem Name="showBooksForAuthorCbi" Content="Show For Author" 
+                                  Background="LightGray" Foreground="DarkSlateGray" 
+                                  Selected="showBooksForAuthorCbi_Selected"/>
+
+                    <ComboBoxItem Name="showBooksForBookNameCbi" Content="Show For Book Name" 
+                                  Background="LightGray" Foreground="DarkSlateGray" 
+                                  Selected="showBooksForBookNameCbi_Selected"/>
+
+                    <ComboBoxItem Name="showBooksForGenreCbi" Content="Show For Genre" 
+                                  Background="LightGray" Foreground="DarkSlateGray" 
+                                  Selected="showBooksForGenreCbi_Selected"/>
+
+                </ComboBox>
+
+                <Label Name="specifierLabel" Margin="15,0,0,0" FontSize="13" FontWeight="DemiBold"
+                       Content="Here might be your advertisment"/>
+
+                <ComboBox Name="searchListComboBox" Width="175" Background="LightGray" 
+                          Margin="25,0,0,0" SelectionChanged="searchListComboBox_SelectionChanged">
+                </ComboBox>
+
+            </StackPanel>
+
+
+            <StackPanel>
+
+                <ComboBox Width="200" Background="LightGray" HorizontalAlignment="Left"
+                          Margin="10,20,0,0">
+                    
+                    <ComboBoxItem Name="showLatestCbi" Content="Show most recent books"
+                                  Background="LightGray" Foreground="DarkSlateGray"
+                                  Selected="showLatestCbi_Selected"/>
+
+                    <ComboBoxItem Name="showMostPopularAuthorsCbi" Content="Show most popular authors"
+                                  Background="LightGray" Foreground="DarkSlateGray"
+                                  Selected="showMostPopularAuthorsCbi_Selected"/>
+
+                    <ComboBoxItem Name="showMostPopularBooksCbi" Content="Show most popular books"
+                                  Background="LightGray" Foreground="DarkSlateGray"
+                                  Selected="showMostPopularBooksCbi_Selected"/>
+
+                    <ComboBoxItem Name="showMostPopularGenresCbi" Content="Show most popular genres"
+                                  Background="LightGray" Foreground="DarkSlateGray"
+                                  Selected="showMostPopularGenresCbi_Selected"/>
+
+                </ComboBox>
+                
+            </StackPanel>
+            
+            
+        </StackPanel>
         
+        
+        
+        <!--================================================-->
+
+        <DataGrid Grid.Row="1" Name="tableDataGrid" Grid.Column="1" Background="#686868" AutoGenerateColumns="True" 
+              HeadersVisibility="All" Foreground="White" RowBackground="#686868" AlternatingRowBackground="#686868"
+                  VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True">
+
+            <DataGrid.Resources>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#686868"/>
+                    <Setter Property="Foreground" Value="#B0B0B0"/>
+                </Style>
+            </DataGrid.Resources>
+
+        </DataGrid>
+
     </Grid>
 </Window>

@@ -82,5 +82,11 @@ namespace Library.Model.AllRepositories
             }
         }
 
+
+        public DataTable GetMostPopularBooks()
+        {
+            return _booksTable.GetMostPopularBooks();
+        }
+
     }
 }

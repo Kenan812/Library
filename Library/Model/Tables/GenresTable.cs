@@ -204,6 +204,27 @@ namespace Library.Model.Tables
         }
 
 
+        public DataTable GetMostPopularGenres()
+        {
+            try
+            {
+                string query = @"SELECT TOP(3) Genres.GenreName FROM Genres
+                                    LEFT JOIN BooksGenres ON BooksGenres.GenreId = Genres.Id
+                                    LEFT JOIN Books ON BooksGenres.BookId = Books.Id
+                                    LEFT JOIN SoldBooks ON SoldBooks.BookId = Books.Id
+                                    GROUP BY Genres.GenreName
+                                    ORDER BY COUNT(SoldBooks.Id) DESC";
+
+
+                return IEnumerableToDataTable.ToDataTable(_connection.Query(query));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Message: {ex.Message}\n\n\nError Stack Trace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return null;
+        }
 
 
 

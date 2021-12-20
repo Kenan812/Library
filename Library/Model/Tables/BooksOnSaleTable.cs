@@ -304,5 +304,114 @@ namespace Library.Model.Tables
 
             return null;
         }
+
+
+        public DataTable GetBooksOnSaleByAuthor(string firstname, string lastname)
+        {
+            try
+            {
+                string query = $@"SELECT Books.BookName, Books.NumberOfPages, Authors.FirstName + ' ' + Authors.LastName AS 'Author', BooksOnSale.Price, 
+	                                    BooksOnSale.Discount, PublishingHouses.PhouseName AS 'Publishing House'
+                                    FROM BooksOnSale
+                                    LEFT JOIN Books ON BooksOnSale.BookId = Books.Id
+                                    LEFT JOIN Authors ON Books.AuthorId = Authors.Id
+                                    LEFT JOIN PublishingHouses ON PublishingHouses.Id = BooksOnSale.PublishingHouseId
+                                    WHERE Authors.FirstName LIKE '{firstname}' AND Authors.LastName LIKE '{lastname}'";
+
+
+                return IEnumerableToDataTable.ToDataTable(_connection.Query(query));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Message: {ex.Message}\n\n\nError Stack Trace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return null;
+        }
+
+
+
+        public DataTable GetBooksOnSaleByBookName(string bookname)
+        {
+            try
+            {
+                string query = $@"SELECT Books.BookName, Books.NumberOfPages, Authors.FirstName + ' ' + Authors.LastName AS 'Author', BooksOnSale.Price, 
+	                                    BooksOnSale.Discount, PublishingHouses.PhouseName AS 'Publishing House'
+                                    FROM BooksOnSale
+                                    LEFT JOIN Books ON BooksOnSale.BookId = Books.Id
+                                    LEFT JOIN Authors ON Books.AuthorId = Authors.Id
+                                    LEFT JOIN PublishingHouses ON PublishingHouses.Id = BooksOnSale.PublishingHouseId
+                                    WHERE Books.BookName LIKE '{bookname}'";
+
+
+                return IEnumerableToDataTable.ToDataTable(_connection.Query(query));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Message: {ex.Message}\n\n\nError Stack Trace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return null;
+        }
+
+
+
+        public DataTable GetBooksOnSaleByGenreName(string genrename)
+        {
+            try
+            {
+                string query = $@"        SELECT Books.BookName, Books.NumberOfPages, Authors.FirstName + ' ' + Authors.LastName AS 'Author', BooksOnSale.Price,
+                                                BooksOnSale.Discount, PublishingHouses.PhouseName AS 'Publishing House'
+                                            FROM BooksOnSale
+                                            LEFT JOIN Books ON BooksOnSale.BookId = Books.Id
+                                            LEFT JOIN Authors ON Books.AuthorId = Authors.Id
+                                            LEFT JOIN PublishingHouses ON PublishingHouses.Id = BooksOnSale.PublishingHouseId
+                                            LEFT JOIN BooksGenres ON Books.Id = BooksGenres.BookId
+                                            LEFT JOIN Genres ON Genres.Id = BooksGenres.GenreId
+                                            WHERE Genres.GenreName LIKE '{genrename}'";
+
+
+                return IEnumerableToDataTable.ToDataTable(_connection.Query(query));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Message: {ex.Message}\n\n\nError Stack Trace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return null;
+        }
+
+
+
+        public DataTable GetMostRecentBooks()
+        {
+            try
+            {
+                string query = @"SELECT Books.BookName, Books.NumberOfPages, Authors.FirstName + ' ' + Authors.LastName AS 'Author', BooksOnSale.Price,
+                                        BooksOnSale.Discount, PublishingHouses.PhouseName AS 'Publishing House'
+                                    FROM BooksOnSale
+                                    LEFT JOIN Books ON BooksOnSale.BookId = Books.Id
+                                    LEFT JOIN Authors ON Books.AuthorId = Authors.Id
+                                    LEFT JOIN PublishingHouses ON PublishingHouses.Id = BooksOnSale.PublishingHouseId
+                                    LEFT JOIN BooksGenres ON Books.Id = BooksGenres.BookId
+                                    LEFT JOIN Genres ON Genres.Id = BooksGenres.GenreId
+                                    WHERE DATEDIFF(DAY, BooksOnSale.DatePutUpForSale, GETDATE()) < 15";
+
+
+                return IEnumerableToDataTable.ToDataTable(_connection.Query(query));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Message: {ex.Message}\n\n\nError Stack Trace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return null;
+        }
+
+
+     
+
+
+
     }
 }

@@ -117,5 +117,28 @@ namespace Library.Model.Tables
 
             return null;
         }
+
+        public DataTable GetSoldBooksForUser(string username)
+        {
+            try
+            {
+                string query = @$"SELECT Books.BookName, Authors.FirstName + ' ' + Authors.LastName AS 'Author', Books.NumberOfPages, Books.IsSequel 
+                                    FROM SoldBooks 
+                                    LEFT JOIN Books ON Books.Id = SoldBooks.BookId
+                                    LEFT JOIN Customers ON Customers.Id = SoldBooks.CustomerId
+                                    LEFT JOIN Authors ON Authors.Id = Books.AuthorId
+                                    WHERE Customers.UserName LIKE '{username}'";
+
+
+                return IEnumerableToDataTable.ToDataTable(_connection.Query(query));
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Message: {ex.Message}\n\n\nError Stack Trace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return null;
+        }
     }
 }

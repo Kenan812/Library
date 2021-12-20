@@ -80,7 +80,10 @@ namespace Library.Model.AllRepositories
             }
         }
 
-
+        public DataTable GetMostPopularAuthors()
+        {
+            return _authorsTable.GetMostPopularAuthors();
+        }
 
 
     }

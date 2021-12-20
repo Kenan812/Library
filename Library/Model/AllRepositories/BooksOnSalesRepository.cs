@@ -121,7 +121,6 @@ namespace Library.Model.AllRepositories
             }
         }
 
-
         public void RemoveDiscount(string bookOnSaleId)
         {
             try
@@ -134,8 +133,27 @@ namespace Library.Model.AllRepositories
             }
         }
 
+        public DataTable GetBooksOnSaleByAuthor(string firstName, string lastName)
+        {
+            return _booksOnSaleTable.GetBooksOnSaleByAuthor(firstName, lastName);
+        }
 
+        public DataTable GetBooksOnSaleByBookName(string bookname)
+        {
+            return _booksOnSaleTable.GetBooksOnSaleByBookName(bookname);
+        }
 
+        public DataTable GetBooksOnSaleByGenreName(string genrename)
+        {
+            return _booksOnSaleTable.GetBooksOnSaleByGenreName(genrename);
+        }
+
+        public DataTable GetMostRecentBooks()
+        {
+            return _booksOnSaleTable.GetMostRecentBooks();
+        }
+
+      
 
     }
 }

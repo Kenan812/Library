@@ -201,6 +201,28 @@ namespace Library.Model.Tables
             return null;
         }
 
+        public DataTable GetMostPopularAuthors()
+        {
+            try
+            {
+                string query = @"SELECT TOP(3) Authors.FirstName, Authors.LastName FROM Authors
+	                                LEFT JOIN Books ON Books.AuthorId = Authors.Id
+	                                LEFT JOIN SoldBooks ON SoldBooks.BookId = Books.Id
+	                                GROUP BY Authors.FirstName, Authors.LastName
+	                                ORDER BY COUNT(SoldBooks.Id) DESC";
+
+
+                return IEnumerableToDataTable.ToDataTable(_connection.Query(query));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Message: {ex.Message}\n\n\nError Stack Trace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return null;
+        }
+
+
 
     }
 }

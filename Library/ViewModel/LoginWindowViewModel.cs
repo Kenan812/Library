@@ -53,7 +53,7 @@ namespace Library.ViewModel
         {
             if (_libraryDbTool.UserRepository.CustomersRepo.CheckUserPassword(username, password))
             {
-                CustomerPageWindow customerPageWindow = new CustomerPageWindow();
+                CustomerPageWindow customerPageWindow = new CustomerPageWindow(username);
                 customerPageWindow.ShowDialog();
             }
             else

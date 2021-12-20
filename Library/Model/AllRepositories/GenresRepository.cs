@@ -80,6 +80,11 @@ namespace Library.Model.AllRepositories
         }
 
 
+        public DataTable GetMostPopularGenres()
+        {
+            return _genresTable.GetMostPopularGenres();
+        }
+
 
     }
 }

@@ -55,5 +55,11 @@ namespace Library.Model.AllRepositories
         {
             return _soldBooksTable.GetSoldBooksInfo();
         }
+
+        public DataTable GetSoldBooksForUser(string username)
+        {
+            return _soldBooksTable.GetSoldBooksForUser(username);
+        }
+
     }
 }
